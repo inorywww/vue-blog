@@ -12,7 +12,7 @@
     export default {
         name: 'App',
         components: {
-            Header
+            Header,
         },
         data() {
             return {
@@ -22,7 +22,7 @@
         methods:{
             toTop(){
                 this.$store.state.headerIsShow = '';
-            }
+            },
         },
     }
 </script>
@@ -42,7 +42,7 @@
     }
 
     a {
-        color: var(--themeFontColor);
+        color: var(--themeFontColor);/*使用var()获取自定义属性*/
         text-decoration: none;
     }
 
