@@ -1,10 +1,8 @@
 <template>
     <div id="app">
         <Header/>
-        <el-backtop class="iconfont icon-rocket"></el-backtop>
-        <router-view/>
-        <!--    <router-link to="/profile">首页</router-link>-->
-        <!--    <router-link to="/content">内容页</router-link>-->
+        <el-backtop class="iconfont icon-rocket" @click="toTop"></el-backtop>
+        <router-view style="padding-top: 60px"/>
     </div>
 </template>
 
@@ -15,7 +13,17 @@
         name: 'App',
         components: {
             Header
-        }
+        },
+        data() {
+            return {
+                isShow:'',
+            }
+        },
+        methods:{
+            toTop(){
+                this.$store.state.headerIsShow = '';
+            }
+        },
     }
 </script>
 
@@ -24,10 +32,11 @@
         margin: 0;
         padding: 0;
         font-size: 14px;
-        background-color: var(--themeColor);
+        background-color: var(--themeBodyColor);
         color: var(--themeFontColor);
-        --themeColor: #272727;
-        --themeFontColor: #f4f4f4;
+        --themeBodyColor: #272727; /*默认主题 背景颜色*/
+        --themeCardColor: #2F3133; /*卡片颜色*/
+        --themeFontColor: #F4F4F4; /*字体颜色*/
         transition: all .3s;
     }
 
@@ -42,8 +51,7 @@
         margin: 8px 0;
     }
     .el-backtop{
-        background-color: transparent;
-        color: var(--themeFontColor);
+        color: #272727 !important;
         font-size: 24px;
     }
     .el-backtop i{
@@ -51,7 +59,7 @@
     }
     .el-card {
         border: none !important;
-        background-color: var(--themeColor) !important;
+        background-color: var(--themeCardColor) !important;
         color: var(--themeFontColor) !important;
     }
 </style>

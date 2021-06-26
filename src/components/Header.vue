@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div :class="`header ${$store.state.headerIsShow}`">
         <el-header class="nav">
             <div class="nav-left">
                 <h4>
@@ -10,16 +10,20 @@
                 <el-menu
                         router
                         mode="horizontal"
-                        background-color="var(--themeColor)"
-                        default-active="home">
+                        default-active="home"
+                        background-color="var(--themeBodyColor)"
+                        text-color="var(--themeFontColor)"
+                        active-text-color="var(--themeFontColor)"
+                >
                     <template v-for="(item,index) in navItems">
                         <template v-if="item.subs">
-                            <el-submenu :index="item.page" :key="index">
-                                <template>
-                                    <template slot="title">
-                                        <i :class="`iconfont ${item.icon}`"></i>
-                                        {{item.title}}
-                                    </template>
+                            <el-submenu
+                                    :index="item.page"
+                                    :key="index"
+                            >
+                                <template slot="title">
+                                    <i :class="`iconfont ${item.icon}`"></i>
+                                    {{item.title}}
                                 </template>
                                 <template>
                                     <el-menu-item v-for="(subItem,index1) in item.subs" :index="subItem.page"
@@ -50,16 +54,27 @@
             </div>
         </el-header>
     </div>
+
 </template>
 
 <script>
-    const themes = ['#f4f4f4', '#272727',];
     const themeIcons = ['icon-sun', 'icon-moon'];
-    let nowTheme = themes[0];
-    let nowFont = themes[1];
+    let themes = {};
+    let nowTheme = {
+        themeName: '',
+        theme: {},
+    };
+    let lastPosition = 0;
+    let nowPosition = 0;
+
     export default {
         name: "Header",
         mounted() {
+            themes = this.$store.state.themes;
+            nowTheme.themeName = 'themeDark';
+            nowTheme.theme = themes.themeDark;
+            // window.addEventListener('scroll',this.handleScroll);
+            window.addEventListener('scroll', this.handleScroll);
         },
         data() {
             return {
@@ -129,35 +144,66 @@
                         title: '留言'
                     },
                 ],
-                nowThemeIcon: themeIcons[0],
+                nowThemeIcon: 'icon-sun',
             }
         },
+        props: {},
         methods: {
             toggleTheme() {
-                nowTheme = nowTheme === themes[0] ? themes[1] : themes[0];
-                nowFont = nowFont === themes[1] ? themes[0] : themes[1];
-                document.body.style.setProperty('--themeColor', nowTheme);
-                document.body.style.setProperty('--themeFontColor', nowFont);
+                nowTheme.themeName = nowTheme.themeName === 'themeLight' ? 'themeDark' : 'themeLight';
+                nowTheme.theme = nowTheme.themeName === 'themeLight' ? themes.themeLight : themes.themeDark;
+                document.body.style.setProperty('--themeBodyColor', nowTheme.theme.bodyColor);
+                document.body.style.setProperty('--themeCardColor', nowTheme.theme.cardColor);
+                document.body.style.setProperty('--themeFontColor', nowTheme.theme.fontColor);
                 this.nowThemeIcon = this.nowThemeIcon === themeIcons[1] ? themeIcons[0] : themeIcons[1];
+            },
+            // handleScroll(e) {
+            //     let direction = e.deltaY > 0 ? 'down' : 'up';  //deltaY为正则滚轮向下，为负滚轮向上
+            //     if (direction === 'down') {
+            //         this.isShow = 'header-hidden';
+            //     }
+            //     if (direction === 'up') {
+            //         this.isShow = '';
+            //     }
+            // },
+            handleScroll() {
+                // 根据滚动位置做的事
+                lastPosition = window.scrollY;
+                if (nowPosition < lastPosition) {//下滚
+                    console.log('下');
+                    this.$store.commit('updateShow','header-hidden');//修改值
+                } else { //上滚
+                    console.log('上')
+                    this.$store.commit('updateShow','');
+                }
+                setTimeout(() => {
+                    nowPosition = lastPosition;
+                }, 80)
             }
         },
+
     }
 </script>
 
 <style scoped>
     .header {
-        /*position: fixed;*/
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        background-color: var(--themeBodyColor) !important;
+        transition: transform 1s;
     }
 
     .el-menu {
         border-bottom: none !important;
+        z-index: 100;
+        background-color: var(--themeBodyColor) !important;
     }
 
-    .is-active {
+    .el-menu-item.is-active {
         background-color: var(--themeFontColor) !important;
-        color: var(--themeColor) !important;
-        border-bottom: none !important;
-        opacity: .4;
+        color: var(--themeBodyColor) !important;
+        opacity: .5;
     }
 
     .header .nav {
@@ -176,16 +222,15 @@
         cursor: pointer;
     }
 
-    .header .nav .nav-right .theme .icon-sun {
-        color: var(--themeFontColor);
-    }
-
     .header .nav .nav-right .actions {
-        font-size: 14px;
         margin-top: 4px;
     }
 
     .el-menu > li .iconfont {
         padding: 0 2px;
+    }
+
+    .header-hidden {
+        transform: translateY(-60px);
     }
 </style>
