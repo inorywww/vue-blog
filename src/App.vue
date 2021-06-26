@@ -34,6 +34,7 @@
         font-size: 14px;
         background-color: var(--themeBodyColor);
         color: var(--themeFontColor);
+        /*自定义属性*/
         --themeBodyColor: #272727; /*默认主题 背景颜色*/
         --themeCardColor: #2F3133; /*卡片颜色*/
         --themeFontColor: #F4F4F4; /*字体颜色*/
