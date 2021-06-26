@@ -2,11 +2,9 @@
     <div class="article-item">
         <el-card :body-style="{padding: '0px',}">
             <div class="article-item-cover">
-                <el-image
-                        alt="image"
-                        :src="item.coverSrc"
-                        lazy></el-image>
+                <img :src="item.coverSrc" alt="image">
             </div>
+
             <div class="article-item-content">
                 <h4><a href="">{{item.title}}</a></h4>
                 <div class="article-time">{{item.time}}</div>
@@ -78,17 +76,23 @@
         margin-bottom: 30px;
     }
 
-    .article-item .article-item-cover {
-        transition: all .5s;
+    .article-item .article-item-cover{
+        overflow: hidden;
+        text-align: center;
+    }
+    .article-item .article-item-cover > img{
+        transition: all .5s ;
+        max-height: 100%;
+        max-width: 100%;
     }
 
-    .article-item .article-item-cover:hover {
-        transform: scale(1.05);
+    .article-item .article-item-cover > img:hover{
+        transform: scale(1.07);
     }
 
     .article-item .article-item-content {
         overflow: hidden;
-        margin: 16px;
+        margin: 0 16px;
     }
 
     .article-item-content .article-introduction {
@@ -115,16 +119,5 @@
         cursor: pointer;
     }
 
-    .article-item-content .article-actions .el-button {
-        background: transparent;
-        border: 0 solid #fff;
-        transition: all .5s;
-        padding: 4px;
-    }
 
-    .article-item-content .article-actions .el-button:hover {
-        background-color: var(--themeFontColor);
-        opacity: .4;
-        color: var(--themeBodyColor);
-    }
 </style>

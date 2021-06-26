@@ -5,13 +5,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "jsonserver": "json-server --watch db/db.json"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
+    "json-server": "^0.16.3",
     "vue": "^2.6.11",
+    "vue-axios": "^3.2.4",
+    "vue-moment": "^4.1.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

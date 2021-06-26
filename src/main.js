@@ -1,35 +1,42 @@
 import Vue from 'vue'
 import App from './App.vue'
+
 import router from './router' //自动扫描路由配置
 import Vuex from 'vuex'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
+import moment from 'vue-moment'
 import animated from 'animate.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
-    Vue.use(Vuex);
+Vue.use(Vuex);
+Vue.use(VueAxios, axios);
 Vue.use(animated)
+Vue.use(moment)
 
 const store = new Vuex.Store({
     state: {
-        themes : {
+        themes: {
             themeDark: {
-                bodyColor:'#171D20',
-                cardColor:'#2F3133',
-                fontColor:'#F4F4F4',
+                bodyColor: '#171D20',
+                cardColor: '#2F3133',
+                fontColor: '#F4F4F4',
             },
-            themeLight:{
-                bodyColor:'#F4F4F4',
-                cardColor:'#FFFFFF',
-                fontColor:'#171D20',
+            themeLight: {
+                bodyColor: '#F4F4F4',
+                cardColor: '#FFFFFF',
+                fontColor: '#171D20',
             }
         },
-        headerIsShow:'',
+        headerIsShow: '',
     },
     mutations: {
-        updateShow(state,show){
+        updateShow(state, show) {
             state.headerIsShow = show;
         }
     }

@@ -93,7 +93,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 16px;
     }
 
     .right-aboutMe .user-info .user-avatar {

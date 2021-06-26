@@ -170,10 +170,8 @@
                 // 根据滚动位置做的事
                 lastPosition = window.scrollY;
                 if (nowPosition < lastPosition) {//下滚
-                    console.log('下');
                     this.$store.commit('updateShow','header-hidden');//修改值
                 } else { //上滚
-                    console.log('上')
                     this.$store.commit('updateShow','');
                 }
                 setTimeout(() => {

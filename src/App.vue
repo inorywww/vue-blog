@@ -62,5 +62,18 @@
         border: none !important;
         background-color: var(--themeCardColor) !important;
         color: var(--themeFontColor) !important;
+        margin: 16px;
+    }
+    .el-button--info {
+        background: transparent !important;
+        border: 0 solid #fff !important;
+        transition: all .5s !important;
+        padding: 4px !important;
+    }
+
+    .el-button--info:hover {
+        background-color: var(--themeFontColor) !important;
+        opacity: .4 !important;
+        color: var(--themeBodyColor) !important;
     }
 </style>
