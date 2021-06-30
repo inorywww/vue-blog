@@ -5,7 +5,8 @@ import VueRouter from "vue-router";
 const Home = () => import('../view/Home') //组件懒加载
 const Login = () => import('../view/Login')
 const Register = () => import('../view/Register')
-
+const Article = () => import('../view/Article')
+const Tags = () => import('../view/Tags')
 //安装路由，相当于类的实例化操作
 Vue.use(VueRouter);
 
@@ -34,7 +35,21 @@ const routes=[
             title: 'register'
         },
         component: Register
-    }
+    },
+    {
+        path: '/article/:id',
+        meta: {
+            title: 'article'
+        },
+        component: Article
+    },
+    {
+        path: '/tags/:id',
+        meta: {
+            title: 'tags'
+        },
+        component: Tags
+    },
 ]
 
 const router = new VueRouter({

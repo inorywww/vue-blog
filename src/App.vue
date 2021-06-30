@@ -7,12 +7,20 @@
 </template>
 
 <script>
-    import Header from "@/components/Header";
+    let lastPosition = 0;//上一时刻滚动条的位置
+    let nowPosition = 0;//下一时刻滚动条的位置
 
+    import Header from "@/components/Header";
     export default {
         name: 'App',
         components: {
             Header,
+        },
+        mounted(){
+            // 添加鼠标往下滚动出现动画的效果
+            this.$nextTick(() => {
+                this.handleScroll();
+            });
         },
         data() {
             return {
@@ -23,6 +31,23 @@
             toTop(){
                 this.$store.state.headerIsShow = '';
             },
+            handleScroll(){
+                window.addEventListener('scroll', ()=>{
+                    lastPosition = window.scrollY;
+                    let items = document.querySelectorAll('.fadeInUp');
+                    for (let i = 0; i < items.length; i++) {
+                        let rect = items[i].getBoundingClientRect();//当前元素离浏览器的边距
+                        if (nowPosition < lastPosition && rect.top - document.documentElement.clientHeight < 20
+                            && !items[i].classList.contains('animate__fadeInUp')) {//下滚
+                            items[i].classList.add('animate__animated','animate__fadeInUp');
+                        }
+                    }
+                    setTimeout(() => {
+                        nowPosition = lastPosition;
+                    }, 80);
+                });
+
+            }
         },
     }
 </script>
@@ -31,7 +56,6 @@
     body {
         margin: 0;
         padding: 0;
-        font-size: 14px;
         background-color: var(--themeBodyColor);
         color: var(--themeFontColor);
         /*自定义属性*/
@@ -44,11 +68,12 @@
     a {
         color: var(--themeFontColor);/*使用var()获取自定义属性*/
         text-decoration: none;
+        font-size: 14px;
+
     }
 
-    h4 {
+    h1,h2,h3,h4 {
         color:var(--themeFontColor);
-        font-size: 20px !important;
         margin: 8px 0;
     }
     .el-backtop{

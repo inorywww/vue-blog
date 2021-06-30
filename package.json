@@ -6,16 +6,21 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "jsonserver": "json-server --watch db/db.json"
+    "mock": "json-server --watch db/db.json"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
+    "html-loader": "^2.1.2",
     "json-server": "^0.16.3",
+    "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
+    "vue-loader": "^15.9.7",
+    "vue-markdown": "^2.2.4",
+    "vue-meditor": "^2.1.1",
     "vue-moment": "^4.1.0",
     "vuex": "^3.6.2"
   },
@@ -26,8 +31,10 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "github-markdown-css": "^4.0.0",
+    "vue-markdown-loader": "^2.4.1",
     "vue-router": "^3.5.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,

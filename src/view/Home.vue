@@ -1,25 +1,12 @@
 <template>
     <el-container>
-        <el-main>
+        <el-main style="overflow: hidden">
             <el-row class="row" :gutter="40">
                 <el-col :span="15">
-                    <template>
-                        <article-box/>
-                    </template>
+                    <article-box/>
                 </el-col>
                 <el-col :span="9">
-                    <div class="right-box">
-                        <template>
-                            <right-about-me/>
-                        </template>
-                        <template>
-                            <right-say/>
-                        </template>
-
-                        <div class="right-tags">
-
-                        </div>
-                    </div>
+                    <right-box/>
                 </el-col>
             </el-row>
         </el-main>
@@ -28,26 +15,22 @@
 </template>
 
 <script>
-    import ArticleBox from "@/components/ArticleBox";
-    import RightAboutMe from "@/components/RightAboutMe";
-    import RightSay from "@/components/RightSay";
+    import ArticleBox from "@/components/home/articleBox/ArticleBox";
+    import RightBox from "@/components/home/rightBox/RightBox";
+
     export default {
         name: "home",
         mounted() {
+
         },
         components: {
+            RightBox,
             ArticleBox,
-            RightAboutMe,
-            RightSay,
         },
         data() {
-            return {
-
-            }
+            return {}
         },
-        methods: {
-
-        },
+        methods: {},
     }
 </script>
 
@@ -57,8 +40,11 @@
         margin: 0 auto !important;
     }
 
-    .right-box > div{
+    .right-box > div {
         padding: 0 16px;
         margin-bottom: 16px;
+    }
+    h1,h2,h3,h4 {
+        font-size: 20px !important;
     }
 </style>

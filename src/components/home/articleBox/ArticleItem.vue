@@ -6,23 +6,29 @@
             </div>
 
             <div class="article-item-content">
-                <h4><a href="">{{item.title}}</a></h4>
+                <router-link :to="`/article/${item.articleID}`"><h4><a href="">{{item.title}}</a></h4></router-link>
                 <div class="article-time">{{item.time}}</div>
-                <div class="article-introduction animate__animated" ref="articleIntroduction">
-                    <p>
-                        <a href="">
-                            {{item.introduction}}
-                        </a>
-                    </p>
-                </div>
-                <div class="article-actions">
-                    <div class="article-read">
-                        <el-button type="info" size="small" plain class="iconfont icon-read">
-                            开始阅读
-                        </el-button>
+                <router-link :to="`/article/${item.articleID}`">
+                    <div class="article-introduction fadeInUp">
+                        <p>
+                            <a href="">
+                                {{item.introduction}}
+                            </a>
+                        </p>
                     </div>
+                </router-link>
+                <div class="article-actions">
+                    <router-link :to="`/article/${item.articleID}`">
+                        <div class="article-read">
+                            <el-button type="info" size="small" plain class="iconfont icon-read">
+                                开始阅读
+                            </el-button>
+                        </div>
+                    </router-link>
+
                     <div class="article-action">
-                        <el-button type="info" class="see iconfont icon-see" @click="getElementPos" plain>
+                        <router-link :to="`/article/${item.articleID}`">
+                        <el-button type="info" class="see iconfont icon-see" plain>
                             <span>{{item.action.see}}</span>
                         </el-button>
                         <el-button type="info" class="like iconfont icon-like" plain>
@@ -31,6 +37,7 @@
                         <el-button type="info" class="comment iconfont icon-comment" plain>
                             <span>{{item.action.comment}}</span>
                         </el-button>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -39,7 +46,6 @@
 </template>
 
 <script>
-    // import {isInContainer} from '@/assets/index'
 
     export default {
         name: "ArticleItem",
@@ -47,7 +53,7 @@
 
         },
         props: {
-            item: Object
+            item: Object,
         },
         data() {
             return {
@@ -55,17 +61,7 @@
             }
         },
         methods: {
-            // 滑动出现底部按钮
-            getElementPos() {
-                let rect = document.querySelectorAll('.article-introduction')[1].getBoundingClientRect();
-                console.log(rect.top - document.documentElement.clientHeight < 20)
-                console.log(document.documentElement.scrollTop || document.body.scrollTop)
-            },
-            isElementVisible() {
-                let rect = document.querySelectorAll('.article-introduction')[1].getBoundingClientRect();
-                console.log(rect.top - document.documentElement.clientHeight + 20)
-                return rect.top - document.documentElement.clientHeight < 20
-            }
+
         },
     }
 </script>
@@ -76,17 +72,18 @@
         margin-bottom: 30px;
     }
 
-    .article-item .article-item-cover{
+    .article-item .article-item-cover {
         overflow: hidden;
         text-align: center;
     }
-    .article-item .article-item-cover > img{
-        transition: all .5s ;
+
+    .article-item .article-item-cover > img {
+        transition: all .5s;
         max-height: 100%;
         max-width: 100%;
     }
 
-    .article-item .article-item-cover > img:hover{
+    .article-item .article-item-cover > img:hover {
         transform: scale(1.07);
     }
 

@@ -6,10 +6,13 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import moment from 'vue-moment'
 import animated from 'animate.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+import 'github-markdown-css/github-markdown.css'
+// import base from './base'//全局函数
+// Vue.use(base);//将全局函数当做插件来进行注册
 
 Vue.config.productionTip = false
 
@@ -17,7 +20,7 @@ Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 Vue.use(animated)
-Vue.use(moment)
+Vue.use(require('vue-moment'));
 
 const store = new Vuex.Store({
     state: {
@@ -46,5 +49,7 @@ new Vue({
     render: h => h(App),
     router, //直接使用即可
     store,
-    components: {App},
+    components: {
+        App
+    },
 }).$mount('#app')

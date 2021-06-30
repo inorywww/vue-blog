@@ -4,40 +4,42 @@
             <h4>INORYWW'S BLOG</h4>
         </div>
         <el-card :body-style="{ padding: '0px' }">
-            <div class="user-info">
-                <div class="user-avatar">
-                    <img src="/static/image/avatar.jpg"/>
+            <div class="aboutMe-body">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img src="/static/image/avatar.jpg"/>
+                    </div>
+                    <div class="user-name">
+                        <h4>inroyww</h4>
+                    </div>
                 </div>
-                <div class="user-name">
-                    <h4>inroyww</h4>
+                <div class="info-count">
+                    <div class="article-num">
+                        <router-link to="/article">{{infoCounts.article}}
+                            <span>article</span>
+                        </router-link>
+                    </div>
+                    <el-divider direction="vertical"></el-divider>
+                    <div class="category-num">
+                        <router-link to="/category">{{infoCounts.category}}
+                            <span>category</span>
+                        </router-link>
+                    </div>
+                    <el-divider direction="vertical"></el-divider>
+                    <div class="tag-num">
+                        <router-link to="/tags">{{infoCounts.tags}}
+                            <span>tag</span>
+                        </router-link>
+                    </div>
                 </div>
-            </div>
-            <div class="info-count">
-                <div class="article-num">
-                    <router-link to="/article">{{infoCounts.article}}
-                        <span>article</span>
-                    </router-link>
-                </div>
-                <el-divider direction="vertical"></el-divider>
-                <div class="category-num">
-                    <router-link to="/category">{{infoCounts.category}}
-                        <span>category</span>
-                    </router-link>
-                </div>
-                <el-divider direction="vertical"></el-divider>
-                <div class="tag-num">
-                    <router-link to="/tags">{{infoCounts.tags}}
-                        <span>tag</span>
-                    </router-link>
-                </div>
-            </div>
-            <el-divider></el-divider>
-            <div class="otherLink">
-                <div class="link-item" v-for="(item, index) in links" :key="index">
-                    <a :href="item.src">
-                        <span :class="`iconfont ${item.icon}`"></span>
-                        <span>{{item.linkName}}</span>
-                    </a>
+                <el-divider></el-divider>
+                <div class="otherLink">
+                    <div class="link-item" v-for="(item, index) in links" :key="index">
+                        <a :href="item.src">
+                            <span :class="`iconfont ${item.icon}`"></span>
+                            <span>{{item.linkName}}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </el-card>
@@ -93,6 +95,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 8px;
     }
 
     .right-aboutMe .user-info .user-avatar {

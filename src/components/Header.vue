@@ -73,7 +73,6 @@
             themes = this.$store.state.themes;
             nowTheme.themeName = 'themeDark';
             nowTheme.theme = themes.themeDark;
-            // window.addEventListener('scroll',this.handleScroll);
             window.addEventListener('scroll', this.handleScroll);
         },
         data() {
@@ -157,15 +156,6 @@
                 document.body.style.setProperty('--themeFontColor', nowTheme.theme.fontColor);
                 this.nowThemeIcon = this.nowThemeIcon === themeIcons[1] ? themeIcons[0] : themeIcons[1];
             },
-            // handleScroll(e) {
-            //     let direction = e.deltaY > 0 ? 'down' : 'up';  //deltaY为正则滚轮向下，为负滚轮向上
-            //     if (direction === 'down') {
-            //         this.isShow = 'header-hidden';
-            //     }
-            //     if (direction === 'up') {
-            //         this.isShow = '';
-            //     }
-            // },
             handleScroll() {
                 // 根据滚动位置做的事
                 lastPosition = window.scrollY;

@@ -23,23 +23,16 @@
 </template>
 
 <script>
-    let lastPosition = 0;//上一时刻滚动条的位置
-    let nowPosition = 0;//下一时刻滚动条的位置
-    let count = 0;
-    import ArticleItem from "@/components/ArticleItem";
+    import ArticleItem from "@/components/home/articleBox/ArticleItem";
 
     export default {
         name: "ArticleBox",
         mounted() {
             this.axios.get('http://localhost:3000/articleItems').then(res => {
-                console.log(res.data);
                 this.articleItems = res.data;
             }).catch(err => {
                 console.error(err)
             })
-            this.$nextTick(() => {
-                window.addEventListener('scroll', this.handleScroll);
-            });
         },
         components: {
             ArticleItem
@@ -51,24 +44,6 @@
             }
         },
         methods: {
-            handleScroll() {
-                lastPosition = window.scrollY;
-                let articleAll = document.querySelectorAll('.article-introduction');
-                for (let i = 1; i < this.articleItems.length; i++) {
-                    let rect = articleAll[i].getBoundingClientRect();//当前元素离浏览器的边距
-                    if (nowPosition < lastPosition && rect.top - document.documentElement.clientHeight < 20
-                        && !articleAll[i].classList.contains('animate__fadeInUp')) {//下滚
-                        articleAll[i].classList.add('animate__fadeInUp');
-                        count++;
-                    }
-                    if (count === this.articleItems.length - 1) {//如果文章已经添加完动画了 就移除
-                        window.removeEventListener('scroll', this.handleScroll);
-                    }
-                }
-                setTimeout(() => {
-                    nowPosition = lastPosition;
-                }, 80);
-            },
         },
     }
 </script>
