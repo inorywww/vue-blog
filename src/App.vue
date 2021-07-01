@@ -56,7 +56,7 @@
 
 <style>
     .app-container{
-        width: 75%;
+        width: 70%;
         margin: 0 auto;
     }
     body {
