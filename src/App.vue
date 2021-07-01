@@ -2,7 +2,9 @@
     <div id="app">
         <Header/>
         <el-backtop class="iconfont icon-rocket" @click="toTop"></el-backtop>
-        <router-view style="padding-top: 60px"/>
+        <div class="app-container">
+            <router-view style="padding-top: 60px"/>
+        </div>
     </div>
 </template>
 
@@ -53,6 +55,10 @@
 </script>
 
 <style>
+    .app-container{
+        width: 75%;
+        margin: 0 auto;
+    }
     body {
         margin: 0;
         padding: 0;
@@ -69,12 +75,12 @@
         color: var(--themeFontColor);/*使用var()获取自定义属性*/
         text-decoration: none;
         font-size: 14px;
-
     }
 
     h1,h2,h3,h4 {
         color:var(--themeFontColor);
         margin: 8px 0;
+        font-size: 1.5em;
     }
     .el-backtop{
         color: #272727 !important;

@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container class="container">
         <el-main style="overflow: hidden">
             <el-row class="row" :gutter="40">
                 <el-col :span="15">
@@ -39,7 +39,6 @@
         width: 80%;
         margin: 0 auto !important;
     }
-
     .right-box > div {
         padding: 0 16px;
         margin-bottom: 16px;

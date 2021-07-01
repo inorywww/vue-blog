@@ -198,6 +198,8 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        width: 75%;
+        margin: 0 auto;
     }
 
     .header .nav .nav-right {
