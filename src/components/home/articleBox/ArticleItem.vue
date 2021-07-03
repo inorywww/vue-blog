@@ -6,14 +6,14 @@
             </div>
 
             <div class="article-item-content">
-                <router-link :to="`/article/${item.articleID}`"><h4><a href="">{{item.title}}</a></h4></router-link>
+                <router-link :to="`/article/${item.articleID}`">
+                    <h4>{{item.title}}</h4>
+                </router-link>
                 <div class="article-time">{{item.time}}</div>
                 <router-link :to="`/article/${item.articleID}`">
                     <div class="article-introduction fadeInUp">
                         <p>
-                            <a href="">
-                                {{item.introduction}}
-                            </a>
+                            {{item.introduction}}
                         </p>
                     </div>
                 </router-link>

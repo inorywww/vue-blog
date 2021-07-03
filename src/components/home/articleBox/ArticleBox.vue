@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="article-box-content">
-            <template v-for="(item, index) in articleItems">
+            <template v-for="(item, index) in this.$store.state.articleItems">
                 <article-item :item="item" :key="index"/>
             </template>
         </div>
@@ -24,12 +24,11 @@
 
 <script>
     import ArticleItem from "@/components/home/articleBox/ArticleItem";
-
     export default {
         name: "ArticleBox",
         mounted() {
             this.axios.get('http://localhost:3000/articleItems').then(res => {
-                this.articleItems = res.data;
+                this.$store.state.articleItems = res.data;
             }).catch(err => {
                 console.error(err)
             })

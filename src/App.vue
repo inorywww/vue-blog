@@ -56,7 +56,7 @@
 
 <style>
     .app-container{
-        width: 70%;
+        width: 60%;
         margin: 0 auto;
     }
     body {
@@ -69,18 +69,19 @@
         --themeCardColor: #2F3133; /*卡片颜色*/
         --themeFontColor: #F4F4F4; /*字体颜色*/
         transition: all .3s;
+        font-family: '微软雅黑';
     }
 
-    a {
+    a,p,ol,ul{
         color: var(--themeFontColor);/*使用var()获取自定义属性*/
         text-decoration: none;
-        font-size: 14px;
+        font-size: 1.3rem;
     }
 
     h1,h2,h3,h4 {
         color:var(--themeFontColor);
         margin: 8px 0;
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
     .el-backtop{
         color: #272727 !important;
@@ -106,5 +107,10 @@
         background-color: var(--themeFontColor) !important;
         opacity: .4 !important;
         color: var(--themeBodyColor) !important;
+    }
+    .markdown-body .highlight pre, .markdown-body pre {
+        background-color: var(--themeBodyColor) !important;
+        color: var(--themeFontColor);
+
     }
 </style>

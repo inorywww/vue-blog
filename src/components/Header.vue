@@ -10,7 +10,7 @@
                 <el-menu
                         router
                         mode="horizontal"
-                        default-active="home"
+                        :default-active="$route.path"
                         background-color="var(--themeBodyColor)"
                         text-color="var(--themeFontColor)"
                         active-text-color="var(--themeFontColor)"
@@ -102,30 +102,8 @@
                     },
                     {
                         icon: 'icon-tag',
-                        page: 'tags',
-                        title: '标签',
-                        subs: [
-                            {
-                                icon: '',
-                                page: 'JavaScript',
-                                title: 'JavaScript',
-                            },
-                            {
-                                icon: '',
-                                page: 'Vue',
-                                title: 'Vue',
-                            },
-                            {
-                                icon: '',
-                                page: 'Python',
-                                title: 'Python',
-                            },
-                            {
-                                icon: '',
-                                page: 'more',
-                                title: '更多',
-                            },
-                        ]
+                        page: 'articles',
+                        title: '文章',
                     },
                     {
                         icon: 'icon-40one',

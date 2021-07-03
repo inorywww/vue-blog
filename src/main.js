@@ -10,15 +10,14 @@ import animated from 'animate.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import 'github-markdown-css/github-markdown.css'
 // import base from './base'//全局函数
 // Vue.use(base);//将全局函数当做插件来进行注册
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 Vue.use(VueAxios, axios);
-Vue.use(animated)
+Vue.use(animated);
 Vue.use(require('vue-moment'));
 
 
@@ -29,4 +28,4 @@ new Vue({
     components: {
         App
     },
-}).$mount('#app')
+}).$mount('#app');

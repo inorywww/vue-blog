@@ -16,11 +16,13 @@ const store = new Vuex.Store({
             }
         },
         headerIsShow: '',
+        articleItems:[],
+
     },
     mutations: {
         updateShow(state, show) {
             state.headerIsShow = show;
         }
     }
-})
+});
 export default store

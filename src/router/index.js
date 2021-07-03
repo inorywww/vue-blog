@@ -2,11 +2,13 @@
 import Vue from "vue"
 import VueRouter from "vue-router";
 
-const Home = () => import('../view/Home') //组件懒加载
-const Login = () => import('../view/Login')
-const Register = () => import('../view/Register')
-const Article = () => import('../view/Article')
-const Tags = () => import('../view/Tags')
+const Home = () => import('../view/Home'); //组件懒加载
+const Login = () => import('../view/Login');
+const Register = () => import('../view/Register');
+const Article = () => import('../view/Article');
+const Tags = () => import('../view/Tags');
+
+const notFoundError = () => import('../view/404');
 //安装路由，相当于类的实例化操作
 Vue.use(VueRouter);
 
@@ -50,12 +52,26 @@ const routes=[
         },
         component: Tags
     },
-]
+    {
+        path: '/404',
+        meta: {
+            title: '404'
+        },
+        component: notFoundError
+    },
+];
 
 const router = new VueRouter({
     mode: 'history',
     routes,
-})
+    scrollBehavior(to,from,saveTop){
+        if(saveTop){
+            return saveTop;
+        }else{
+            return {x:0,y:0}
+        }
+    },
+});
 
 export default router;
 
