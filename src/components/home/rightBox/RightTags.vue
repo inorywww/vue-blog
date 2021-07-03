@@ -1,5 +1,5 @@
 <template>
-    <div class="right-tags animate__animated animate__fadeInUp">
+    <div class="right-tags fadeInUp">
         <div class="tags-title">
             <h4>全部标签</h4>
         </div>

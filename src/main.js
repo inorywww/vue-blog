@@ -6,6 +6,10 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+Vue.component("mavon-editor", mavonEditor);
+
 import animated from 'animate.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';

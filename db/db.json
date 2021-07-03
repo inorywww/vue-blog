@@ -11,7 +11,8 @@
 				"see": 250,
 				"like": 20,
 				"comment": 12
-			}
+			},
+			"tags": ["JS","vue","变量"]
 		},
 		{
 			"articleID": 1,
@@ -24,7 +25,8 @@
 				"see": 1201,
 				"like": 120,
 				"comment": 68
-			}
+			},
+			"tags": ["JS","ES6","正则表达式"]
 		},
 		{
 			"articleID": 2,
@@ -37,7 +39,8 @@
 				"see": 300,
 				"like": 130,
 				"comment": 60
-			}
+			},
+			"tags": ["JS","黑马","css"]
 		}
 	],
 	"says": [

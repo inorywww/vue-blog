@@ -9,9 +9,6 @@
 </template>
 
 <script>
-    let lastPosition = 0;//上一时刻滚动条的位置
-    let nowPosition = 0;//下一时刻滚动条的位置
-
     import Header from "@/components/Header";
     export default {
         name: 'App',
@@ -20,9 +17,8 @@
         },
         mounted(){
             // 添加鼠标往下滚动出现动画的效果
-            this.$nextTick(() => {
-                this.handleScroll();
-            });
+
+
         },
         data() {
             return {
@@ -33,23 +29,7 @@
             toTop(){
                 this.$store.state.headerIsShow = '';
             },
-            handleScroll(){
-                window.addEventListener('scroll', ()=>{
-                    lastPosition = window.scrollY;
-                    let items = document.querySelectorAll('.fadeInUp');
-                    for (let i = 0; i < items.length; i++) {
-                        let rect = items[i].getBoundingClientRect();//当前元素离浏览器的边距
-                        if (nowPosition < lastPosition && rect.top - document.documentElement.clientHeight < 20
-                            && !items[i].classList.contains('animate__fadeInUp')) {//下滚
-                            items[i].classList.add('animate__animated','animate__fadeInUp');
-                        }
-                    }
-                    setTimeout(() => {
-                        nowPosition = lastPosition;
-                    }, 80);
-                });
 
-            }
         },
     }
 </script>
@@ -65,9 +45,15 @@
         background-color: var(--themeBodyColor);
         color: var(--themeFontColor);
         /*自定义属性*/
-        --themeBodyColor: #272727; /*默认主题 背景颜色*/
-        --themeCardColor: #2F3133; /*卡片颜色*/
-        --themeFontColor: #F4F4F4; /*字体颜色*/
+        /*--themeBodyColor: #2F3133; !*默认主题 背景颜色*!*/
+        /*--themeCardColor: #272727; !*卡片颜色*!*/
+        /*--themeFontColor: #F4F4F4; !*字体颜色*!*/
+        --themeBodyColor: #F4F4F4; /*默认主题 背景颜色*/
+        --themeCardColor: #FFFFFF; /*卡片颜色*/
+        --themeFontColor: #171D20; /*字体颜色*/
+        /*bodyColor: '#F4F4F4',*/
+        /*cardColor: '#FFFFFF',*/
+        /*fontColor: '#171D20',*/
         transition: all .3s;
         font-family: '微软雅黑';
     }
@@ -108,9 +94,8 @@
         opacity: .4 !important;
         color: var(--themeBodyColor) !important;
     }
-    .markdown-body .highlight pre, .markdown-body pre {
-        background-color: var(--themeBodyColor) !important;
-        color: var(--themeFontColor);
 
+    .hljs-keyword, .hljs-selector-tag, .hljs-subst, .hljs-tag, .hljs-name, .hljs-attribute{
+        color: #d7acbc !important;
     }
 </style>

@@ -71,8 +71,8 @@
         name: "Header",
         mounted() {
             themes = this.$store.state.themes;
-            nowTheme.themeName = 'themeDark';
-            nowTheme.theme = themes.themeDark;
+            nowTheme.themeName = 'themeLight';
+            nowTheme.theme = themes.themeLight;
             window.addEventListener('scroll', this.handleScroll);
         },
         data() {
@@ -80,44 +80,44 @@
                 navItems: [
                     {
                         icon: 'icon-indexactive',
-                        page: 'home',
+                        page: '/home',
                         title: '首页'
                     },
                     {
                         icon: 'icon-Category',
-                        page: 'category',
+                        page: '/category',
                         title: '分类',
                         subs: [
                             {
                                 icon: '',
-                                page: 'skillShare',
+                                page: '/category/skillShare',
                                 title: '技术分享',
                             },
                             {
                                 icon: '',
-                                page: 'say',
+                                page: '/category/say',
                                 title: '碎碎念',
                             },
                         ]
                     },
                     {
                         icon: 'icon-tag',
-                        page: 'articles',
+                        page: '/article',
                         title: '文章',
                     },
                     {
                         icon: 'icon-40one',
-                        page: 'about',
+                        page: '/about',
                         title: '关于'
                     },
                     {
                         icon: 'icon-aichegujiabeifen7',
-                        page: 'all',
+                        page: '/all',
                         title: '归档'
                     },
                     {
                         icon: 'icon-liuyan',
-                        page: 'message',
+                        page: '/message',
                         title: '留言'
                     },
                 ],
