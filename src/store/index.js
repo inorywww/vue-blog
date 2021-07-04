@@ -16,8 +16,6 @@ const store = new Vuex.Store({
             }
         },
         headerIsShow: '',
-        articleItems:[],
-
     },
     mutations: {
         updateShow(state, show) {

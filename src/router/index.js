@@ -2,12 +2,10 @@
 import Vue from "vue"
 import VueRouter from "vue-router";
 
-const Home = () => import('../view/Home'); //组件懒加载
-const Login = () => import('../view/Login');
-const Register = () => import('../view/Register');
-const Article = () => import('../view/Article');
-const Tags = () => import('../view/Tags');
-
+const Home = () => import('../view/home/Home'); //组件懒加载
+const ArticleDetail = () => import('../view/home/ArticleDetail');
+const Tags = () => import('../view/home/Tags');
+const Articles = () => import('../view/home/Articles');
 const notFoundError = () => import('../view/404');
 //安装路由，相当于类的实例化操作
 Vue.use(VueRouter);
@@ -20,30 +18,21 @@ const routes=[
     {
         path: '/home',
         name: 'home',
-        //跳转的组件
         component: Home,
-        children: []
     },
     {
-        path: '/login',
+        path: '/article',
         meta: {
-            title: 'login'
+            title: 'article'
         },
-        component: Login
-    },
-    {
-        path: '/register',
-        meta: {
-            title: 'register'
-        },
-        component: Register
+        component: Articles
     },
     {
         path: '/article/:id',
         meta: {
-            title: 'article'
+            title: 'article/:id'
         },
-        component: Article
+        component: ArticleDetail
     },
     {
         path: '/tags/:id',

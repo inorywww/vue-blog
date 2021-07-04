@@ -1,10 +1,12 @@
 <template>
+    <div class="tag">
 
+    </div>
 </template>
 
 <script>
     export default {
-        name: "Index",
+        name: "Tags",
         mounted() {
         },
         data() {
