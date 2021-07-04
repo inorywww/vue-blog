@@ -57,8 +57,12 @@
         text-decoration: none;
         font-size: 1.3rem;
     }
-
-    h1,h2,h3,h4 {
+    h1,h2{
+        color:var(--themeFontColor);
+        margin: 16px 0;
+        font-size: 2rem;
+    }
+    h3,h4 {
         color:var(--themeFontColor);
         margin: 8px 0;
         font-size: 1.5rem;

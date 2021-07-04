@@ -7,7 +7,7 @@
 
             <div class="article-item-content">
                 <router-link :to="`/article/${item.articleID}`">
-                    <h4>{{item.title}}</h4>
+                    <h3>{{item.title}}</h3>
                 </router-link>
                 <div class="article-time">{{item.time}}</div>
                 <router-link :to="`/article/${item.articleID}`">
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-
     export default {
         name: "ArticleItem",
         mounted() {

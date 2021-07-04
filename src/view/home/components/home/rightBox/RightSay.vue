@@ -86,10 +86,6 @@
 </script>
 
 <style scoped>
-    .say-item {
-        padding: 2px 12px;
-    }
-
     .say-item .say-header {
         display: flex;
         align-items: center;

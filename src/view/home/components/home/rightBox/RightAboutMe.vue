@@ -1,7 +1,7 @@
 <template>
     <div class="right-aboutMe">
         <div class="aboutMe-title">
-            <h4>INORYWW'S BLOG</h4>
+            <h1>INORYWW'S BLOG</h1>
         </div>
         <el-card :body-style="{ padding: '0px' }">
             <div class="aboutMe-body">
@@ -10,7 +10,7 @@
                         <img src="/static/image/avatar.jpg"/>
                     </div>
                     <div class="user-name">
-                        <h4>inroyww</h4>
+                        <h3>inroyww</h3>
                     </div>
                 </div>
                 <div class="info-count">

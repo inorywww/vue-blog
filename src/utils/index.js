@@ -1,6 +1,8 @@
+import { Message } from 'element-ui';
+
 let lastPosition = 0; //上一时刻滚动条的位置
 let nowPosition = 0; //下一时刻滚动条的位置
-function handleScroll() { //动态添加滚动样式，使用的话给对应的标签加上.fadeInUp 然后调用这个方法即可
+export function handleScroll() { //动态添加滚动样式，使用的话给对应的标签加上.fadeInUp 然后调用这个方法即可
     const items = document.querySelectorAll('.fadeInUp'); //先给当前页面显示的元素添加样式
     for (let i = 0; i < items.length; i++) {
         const rect = items[i].getBoundingClientRect(); //当前元素离浏览器的边距
@@ -25,7 +27,7 @@ function handleScroll() { //动态添加滚动样式，使用的话给对应的�
     });
 }
 
-function isEmail(val) {
+export function isEmail(val) {
     const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/
     const domains = [
         'qq.com',
@@ -52,7 +54,10 @@ function isEmail(val) {
     return false
 }
 
-module.exports = {
-    handleScroll,
-    isEmail,
-};
+export function alertInfo(message, type){
+    Message({
+        showClose: true,
+        message,
+        type: type,
+    });
+}

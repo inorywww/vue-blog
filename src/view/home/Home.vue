@@ -15,11 +15,11 @@
                 </el-col>
             </el-row>
         </el-main>
+       <router-view/>
     </el-container>
 </template>
 
 <script>
-//src\view\home\components\home\articleBox
     // import {ArticleBox,RightBox} from "@/view/home/components/home/articleBox";
     import ArticleBox from "@/view/home/components/home/articleBox/ArticleBox";
     import RightBox from "@/view/home/components/home/rightBox/RightBox";

@@ -3,7 +3,7 @@
         <el-header class="nav">
             <div class="nav-left">
                 <h4>
-                    <a href="/">INORYWW</a>
+                    <router-link to="/home">INORYWW</router-link>
                 </h4>
             </div>
             <div class="nav-center">
