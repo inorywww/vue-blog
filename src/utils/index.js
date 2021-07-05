@@ -1,5 +1,5 @@
 import { Message } from 'element-ui';
-
+import store from '@/store'
 let lastPosition = 0; //上一时刻滚动条的位置
 let nowPosition = 0; //下一时刻滚动条的位置
 export function handleScroll() { //动态添加滚动样式，使用的话给对应的标签加上.fadeInUp 然后调用这个方法即可
@@ -54,10 +54,19 @@ export function isEmail(val) {
     return false
 }
 
-export function alertInfo(message, type){
+export function alertInfo(message, type) {
     Message({
         showClose: true,
         message,
         type: type,
     });
+}
+
+export function startLoading() {
+    console.log('start');
+    store.state.isLoading = true;
+}
+export function stopLoading() {
+    console.log('stop');
+    store.state.isLoading = false;
 }

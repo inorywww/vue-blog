@@ -1,18 +1,21 @@
 <template>
     <div id="Index">
+        <Progress/>
         <Header/>
         <el-backtop class="iconfont icon-rocket" @click="toTop"></el-backtop>
-        <div class="app-container">
+        <div class="app-container" >
             <router-view style="padding-top: 60px"/>
         </div>
     </div>
 </template>
 
 <script>
+    import Progress from '@/view/home/components/Progress';
     import Header from "@/view/home/components/Header";
     export default {
         name: 'Index',
         components: {
+            Progress,
             Header,
         },
         mounted(){

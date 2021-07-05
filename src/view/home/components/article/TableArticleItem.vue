@@ -10,7 +10,7 @@
                 <el-container class="item-content">
                     <el-main class="item-body">
                         <div class="title">
-                            <h1>{{ item.title }}</h1>
+                            <h3>{{ item.title }}</h3>
                         </div>
                         <div class="tags">
                             <router-link

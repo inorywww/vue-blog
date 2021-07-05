@@ -22,8 +22,6 @@ export default {
              handleScroll();
         })
     },
-    props: {
-    },
     components: {
         ListArticleItem,
     },
@@ -37,6 +35,5 @@ export default {
 </script>
 
 <style scoped>
-.list-show{
-}
+
 </style>

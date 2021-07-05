@@ -1,7 +1,7 @@
 //导入vue和vue-router组件
 import Vue from "vue"
 import VueRouter from "vue-router";
-
+import {startLoading, stopLoading} from '@/utils';
 //组件懒加载
 const Index = () => import('@/view/home/Index');
 const notFoundError = () => import('@/view/404/Index');
@@ -34,12 +34,23 @@ const routes = [{
                 component: () => import('@/view/home/ArticleDetail')
             },
             {
-                path: '/tags/:id',
+                path: '/tags',
+                redirect: '/tags/JS',
+            },
+            {
+                path: '/tags/:tagName',
                 meta: {
                     title: '标签列表'
                 },
                 component: () => import('@/view/home/Tags')
             },
+            {
+                path: '/archive',
+                meta: {
+                    title: '归档'
+                },
+                component: () => import('@/view/home/Archive')
+            }
         ]
     },
 
@@ -68,4 +79,19 @@ const router = new VueRouter({
     },
 });
 
+// 路由发生变化修改页面title
+router.beforeEach( (to, from, next) => {
+    startLoading();
+    if (to.meta.title) {
+        if (to.meta.title!=='articleDetail') {
+            document.title = to.meta.title;
+        }
+    }
+    next()
+})
+
+
+router.afterEach(() => {
+    stopLoading();
+})
 export default router;

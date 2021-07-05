@@ -20,7 +20,6 @@
 </template>
 
 <script>
-    // import {ArticleBox,RightBox} from "@/view/home/components/home/articleBox";
     import ArticleBox from "@/view/home/components/home/articleBox/ArticleBox";
     import RightBox from "@/view/home/components/home/rightBox/RightBox";
     import {handleScroll} from "@/utils/index"

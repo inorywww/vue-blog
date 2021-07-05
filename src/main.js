@@ -23,14 +23,6 @@ Vue.prototype.$api = API;
 Vue.config.productionTip = false;
 Vue.use(require('vue-moment'));
 
-router.beforeEach((to, from, next) => {
-    // 路由发生变化修改页面title
-    if (to.meta.title) {
-      document.title = to.meta.title
-    }
-    next()
-  })
-
 new Vue({
     render: h => h(App),
     router, //直接使用即可

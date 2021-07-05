@@ -18,15 +18,17 @@
             </div>
             <div class="tags-info">
                 <router-link
-                    v-for="(item, index) in articleItem.tags"
+                    class="tag-item"
+                    v-for="(tag, index) in articleItem.tags"
                     :key="index"
-                    :to="`/tags/${item}`"
+                    :to="`/tags/${tag}`"
                 >
-                    <el-tag type="info" effect="dark">
-                        {{ item }}
-                    </el-tag>
+                    <el-tag type="info" effect="dark" size="medium">
+                        #{{ tag }}</el-tag
+                    >
                 </router-link>
             </div>
+           
         </header>
         <main class="article-content">
             <div class="markdown-body">
@@ -83,18 +85,14 @@ export default {
         getAllArticle()
             .then((res) => {
                 if (res.status == 200) {
-                    this.articleItem = res.data.filter((item) => {
+                    this.articleItem = res.data.find((item) => {
                         //找到当前这一篇文章
                         return item.articleID === Number(this.$route.params.id);
-                    })[0];
-                    if (!this.articleItem) {
-                        console.log("404");
-                        this.$route.push("404");
-                    }
-
+                    });
+                    
+                    document.title = this.articleItem.title; //设置标题
                     let path = this.articleItem.fileName;
-                    this.$options.components["articleMD"] =
-                        require(`@/assets/md/${path}`).default;
+                    this.$options.components["articleMD"] = require(`@/assets/md/${path}`).default;
                     this.articleComponent = "articleMD";
 
                     this.$nextTick(() => {
@@ -133,9 +131,6 @@ export default {
     methods: {
         change(value, render) {
             this.html = render;
-        },
-        checkUsername() {
-            console.log("username");
         },
         alertInfo(message, type) {
             this.$message({
@@ -267,5 +262,14 @@ export default {
 }
 .animate__zoomIn {
     --animate-duration: 1.5s;
+}
+.el-tag--dark.el-tag--info{
+    background-color: var(--themeBodyColor) !important;
+    border: #e0e0e0 !important;
+    color:var(--themeFontColor);
+    transition: all .5s;
+}
+.el-tag--dark.el-tag--info:hover{
+    transform: scale(1.2);
 }
 </style>

@@ -69,7 +69,7 @@
       "tags": [
         "JS",
         "ES6",
-        "正则表达式"
+        "docker"
       ]
     },
     {
@@ -121,7 +121,7 @@
         "comment": 60
       },
       "tags": [
-        "JS",
+        "docker",
         "黑马",
         "css"
       ]
@@ -140,7 +140,7 @@
       },
       "tags": [
         "JS",
-        "ES6",
+        "docker",
         "正则表达式"
       ]
     },
@@ -255,32 +255,32 @@
   "tags": [
     {
       "tagID": 1,
-      "tagName": "Vue",
+      "tagName": "JS",
       "totalNum": 7
     },
     {
       "tagID": 2,
-      "tagName": "Python",
+      "tagName": "vue",
       "totalNum": 3
     },
     {
       "tagID": 3,
-      "tagName": "Docker",
+      "tagName": "正则表达式",
       "totalNum": 1
     },
     {
       "tagID": 4,
-      "tagName": "加密货币",
+      "tagName": "变量",
       "totalNum": 2
     },
     {
       "tagID": 5,
-      "tagName": "CSS3",
+      "tagName": "css",
       "totalNum": 4
     },
     {
       "tagID": 6,
-      "tagName": "小说",
+      "tagName": "docker",
       "totalNum": 2
     }
   ],

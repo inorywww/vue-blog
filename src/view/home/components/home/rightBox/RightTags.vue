@@ -2,6 +2,11 @@
     <div class="right-tags fadeInUp">
         <div class="tags-title">
             <h3>全部标签</h3>
+            <div class="seeMore">
+                <router-link to="/tags">
+                    <el-tag type="info" effect="dark"> 查看更多 </el-tag>
+                </router-link>
+            </div>
         </div>
         <el-card :body-style="{ padding: '0px' }">
             <div class="tags-body">
@@ -44,17 +49,20 @@ export default {
 </script>
 
 <style scoped>
-.tags-body .el-tag {
+.tags-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.el-tag--dark.el-tag--info {
+    background-color: var(--themeBodyColor) !important;
+    border: #e0e0e0 !important;
+    color: var(--themeFontColor);
+    transition: all 0.5s;
     margin: 4px 8px;
     cursor: pointer;
 }
-.el-tag--dark.el-tag--info{
-    background-color: var(--themeBodyColor) !important;
-    border: #e0e0e0 !important;
-    color:var(--themeFontColor);
-    transition: all .5s;
-}
-.el-tag--dark.el-tag--info:hover{
+.tags-body .el-tag--dark.el-tag--info:hover {
     transform: scale(1.2);
 }
 </style>

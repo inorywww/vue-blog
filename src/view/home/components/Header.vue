@@ -84,31 +84,15 @@
                         title: '首页'
                     },
                     {
-                        icon: 'icon-Category',
-                        page: '/category',
-                        title: '分类',
-                        subs: [
-                            {
-                                icon: '',
-                                page: '/category/vue',
-                                title: 'vue',
-                            },
-                            {
-                                icon: '',
-                                page: '/category/js',
-                                title: 'js',
-                            },
-                            {
-                                icon: '',
-                                page: '/category',
-                                title: 'more',
-                            },
-                        ]
+                        icon: 'icon-article',
+                        page: '/article',
+                        title: '文章',
+                       
                     },
                     {
                         icon: 'icon-tag',
-                        page: '/article',
-                        title: '文章',
+                        page: '/tags',
+                        title: '分类',
                     },
                     {
                         icon: 'icon-huati',
@@ -122,7 +106,7 @@
                     },
                     {
                         icon: 'icon-aichegujiabeifen7',
-                        page: '/all',
+                        page: '/archive',
                         title: '归档'
                     },
                     {
