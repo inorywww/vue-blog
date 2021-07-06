@@ -46,11 +46,16 @@ const routes = [{
             },
             {
                 path: '/archive',
+                redirect: '/archive/2017-11',
+            },
+            {
+                path: '/archive/:yearMouthName',
                 meta: {
                     title: '归档'
                 },
                 component: () => import('@/view/home/Archive')
             }
+
         ]
     },
 
@@ -88,10 +93,10 @@ router.beforeEach( (to, from, next) => {
         }
     }
     next()
-})
+});
 
 
 router.afterEach(() => {
     stopLoading();
-})
+});
 export default router;

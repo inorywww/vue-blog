@@ -7,7 +7,7 @@
                         <h3>{{ item.title }}</h3>
                     </div>
                     <div class="article-time">
-                        {{ item.time }}
+                        {{ item.releaseTime|moment("YYYY-MM-DD") }}
                     </div>
                 </header>
                 <main class="item-body">
@@ -19,7 +19,7 @@
                 </main>
                 <footer class="article-action">
                     <el-button type="info" class="see iconfont icon-see" plain>
-                            <span>{{item.action.see}}</span>
+                        <span>{{item.action.see}}</span>
                     </el-button>
                     <el-button type="info" class="like iconfont icon-like" plain>
                         <span>{{item.action.like}}</span>
@@ -34,39 +34,42 @@
 </template>
 
 <script>
-export default {
-    name: "articleItem",
-    props: {
-        item: Object,
-    },
-    mounted() {},
-    components: {},
-    data() {
-        return {
-            isAnimate: "",
-        };
-    },
-    methods: {
-        addAnimate() {
-            this.isAnimate = "animate__bounceIn";
-            console.log("addAnimate");
+    export default {
+        name: "articleItem",
+        props: {
+            item: Object,
         },
-        removeAnimate() {
-            this.isAnimate = "";
-            console.log("removeAnimate");
+        mounted() {
         },
-    },
-};
+        components: {},
+        data() {
+            return {
+                isAnimate: "",
+            };
+        },
+        methods: {
+            addAnimate() {
+                this.isAnimate = "animate__bounceIn";
+                console.log("addAnimate");
+            },
+            removeAnimate() {
+                this.isAnimate = "";
+                console.log("removeAnimate");
+            },
+        },
+    };
 </script>
 
 <style scoped>
-.article-time {
-    color: #b0b1b2;
-}
-.article-list-item {
-    transition: all 0.5s;
-}
-.article-list-item:hover {
-    transform: scale(1.05);
-}
+    .article-time {
+        color: #b0b1b2;
+    }
+
+    .article-list-item {
+        transition: all 0.5s;
+    }
+
+    .article-list-item:hover {
+        transform: scale(1.05);
+    }
 </style>

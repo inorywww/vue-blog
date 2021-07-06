@@ -1,7 +1,18 @@
 import { Message } from 'element-ui';
+import moment from "moment";
 import store from '@/store'
 let lastPosition = 0; //上一时刻滚动条的位置
 let nowPosition = 0; //下一时刻滚动条的位置
+
+export function getYearMouth(date) {
+    return moment(date).format('YYYY-MM');
+}
+export function getMouth(data){
+    return moment(data).format('MM');
+}
+export function getYear(date) {
+    return moment(date).format('YYYY');
+}
 export function handleScroll() { //动态添加滚动样式，使用的话给对应的标签加上.fadeInUp 然后调用这个方法即可
     const items = document.querySelectorAll('.fadeInUp'); //先给当前页面显示的元素添加样式
     for (let i = 0; i < items.length; i++) {
@@ -11,7 +22,8 @@ export function handleScroll() { //动态添加滚动样式，使用的话给对
             items[i].classList.add('animate__animated', 'animate__fadeInUp');
         }
     }
-    window.addEventListener('scroll', () => { //当鼠标往下滚动时，给没有添加到的添加样式
+    
+    window.scroll1 =  window.addEventListener('scroll', () => { //当鼠标往下滚动时，给没有添加到的添加样式
         lastPosition = window.scrollY;
         for (let i = 0; i < items.length; i++) {
             const rect = items[i].getBoundingClientRect(); //当前元素离浏览器的边距
@@ -63,10 +75,10 @@ export function alertInfo(message, type) {
 }
 
 export function startLoading() {
-    console.log('start');
+    // console.log('start');
     store.state.isLoading = true;
 }
 export function stopLoading() {
-    console.log('stop');
+    // console.log('stop');
     store.state.isLoading = false;
 }

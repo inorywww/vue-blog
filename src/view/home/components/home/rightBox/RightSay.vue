@@ -13,7 +13,7 @@
                             <router-link to="/about" class="user-name">
                                 {{item.sayHeader.userName}}
                             </router-link>
-                            <a class="shallow">{{item.sayHeader.pubTime|moment("YYYY-MM-DD")}} </a>
+                            <a class="shallow">{{item.sayHeader.releaseTime|moment("YYYY-MM-DD")}} </a>
                         </div>
                         <div class="content-footer">
                             <a class="shallow">

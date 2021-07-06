@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"
+import fa from "element-ui/src/locale/lang/fa";
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
@@ -18,6 +19,11 @@ const store = new Vuex.Store({
         },
         headerIsShow: '',
         allArticles:[],
+        showListOrTable:{
+            article:false,
+            tags:false,
+            archive:false,
+        },
         articleShowList:false,
         isLoading:true,
     },
@@ -25,8 +31,8 @@ const store = new Vuex.Store({
         updateShow(state, show) {
             state.headerIsShow = show;
         },
-        changeArticleShow(state){
-            state.articleShowList = !state.articleShowList;
+        changeShowWay(state,el){
+            state.showListOrTable[el] = !state.showListOrTable[el];
         }
     },
     plugins: [createPersistedState()]

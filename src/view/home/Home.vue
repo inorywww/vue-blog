@@ -15,7 +15,7 @@
                 </el-col>
             </el-row>
         </el-main>
-       <router-view/>
+        <router-view/>
     </el-container>
 </template>
 
@@ -23,13 +23,13 @@
     import ArticleBox from "@/view/home/components/home/articleBox/ArticleBox";
     import RightBox from "@/view/home/components/home/rightBox/RightBox";
     import {handleScroll} from "@/utils/index"
-   
+
     export default {
         name: "home",
         mounted() {
-            setTimeout(()=>{
+            setTimeout(() => {
                 handleScroll();
-            },400);
+            }, 400);
         },
         components: {
             RightBox,
@@ -38,9 +38,7 @@
         data() {
             return {}
         },
-        methods: {
-           
-        },
+        methods: {},
     }
 </script>
 
@@ -48,15 +46,18 @@
     .row {
         margin: 0 auto !important;
     }
+
     .right-box > div {
         padding: 0 16px;
         margin-bottom: 16px;
     }
-    .showMore{
+
+    .showMore {
         text-align: center;
 
     }
-    .el-button--success{
+
+    .el-button--success {
         background-color: var(--themeFontColor) !important;
         border: none !important;
         color: var(--themeBodyColor) !important;

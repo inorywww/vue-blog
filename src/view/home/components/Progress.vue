@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         setProgress() {
-            window.addEventListener("scroll", () => {
+          window.progress = window.addEventListener("scroll", () => {
                 const viewHeight = document.documentElement.scrollTop;
                 this.progress =
                     viewHeight /

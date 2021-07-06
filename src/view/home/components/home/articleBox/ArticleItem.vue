@@ -9,7 +9,7 @@
                 <router-link :to="`/article/${item.articleID}`">
                     <h3>{{item.title}}</h3>
                 </router-link>
-                <div class="article-time">{{item.time}}</div>
+                <div class="article-time">{{item.releaseTime|moment("YYYY-MM-DD")}}</div>
                 <router-link :to="`/article/${item.articleID}`">
                     <div class="article-introduction fadeInUp">
                         <p>
