@@ -1,7 +1,7 @@
 <template>
     <router-link :to="`/article/${item.articleID}`">
-        <div class="article-list-item">
-            <el-card>
+        <div class="article-list-item ">
+            <el-card class="fadeInUp">
                 <header class="item-header">
                     <div class="title">
                         <h3>{{ item.title }}</h3>
@@ -34,12 +34,17 @@
 </template>
 
 <script>
+    import {handleScroll} from "@/utils/index";
+
     export default {
         name: "articleItem",
         props: {
             item: Object,
         },
         mounted() {
+            this.$nextTick(() => {
+                handleScroll();
+            })
         },
         components: {},
         data() {
@@ -48,14 +53,6 @@
             };
         },
         methods: {
-            addAnimate() {
-                this.isAnimate = "animate__bounceIn";
-                console.log("addAnimate");
-            },
-            removeAnimate() {
-                this.isAnimate = "";
-                console.log("removeAnimate");
-            },
         },
     };
 </script>

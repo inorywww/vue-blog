@@ -3,8 +3,7 @@
         <el-row
                 v-for="(item, index) in tagArticles"
                 :key="index"
-                class="article-list-row fadeInUp"
-
+                class="article-list-row"
         >
             <list-item  :item="item"/>
         </el-row>
@@ -13,7 +12,6 @@
 
 <script>
     import ListItem from "@/view/home/components/showItem/ListItem";
-    import {handleScroll} from "@/utils/index";
     import {getAllArticle} from "@/api";
 
     export default {
@@ -23,15 +21,13 @@
             await getAllArticle().then((res) => {
                 res.data.forEach((item) => {
                     item.tags.forEach((tag) => {
-                        if (tag === this.$route.params.tagName) {
+                        if (tag === this.$route.query.tagName) {
                             this.tagArticles.push(item);
                         }
                     });
                 });
             });
-            this.$nextTick(() => {
-                handleScroll();
-            })
+          
         },
 
         data() {

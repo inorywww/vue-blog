@@ -20,7 +20,7 @@
         components: {ListItem},
         async mounted() {
             await getAllArticle().then((res) => {
-                this.archiveItems = res.data.filter(item => getYearMouth(item.releaseTime) === this.$route.params.yearMouthName);
+                this.archiveItems = res.data.filter(item => getYearMouth(item.releaseTime) === this.$route.query.time);
             });
             this.$nextTick(() => {
                 handleScroll();

@@ -25,20 +25,6 @@
                             </el-button>
                         </div>
                     </router-link>
-
-                    <div class="article-action">
-                        <router-link :to="`/article/${item.articleID}`">
-                        <el-button type="info" class="see iconfont icon-see" plain>
-                            <span>{{item.action.see}}</span>
-                        </el-button>
-                        <el-button type="info" class="like iconfont icon-like" plain>
-                            <span>{{item.action.like}}</span>
-                        </el-button>
-                        <el-button type="info" class="comment iconfont icon-comment" plain>
-                            <span>{{item.action.comment}}</span>
-                        </el-button>
-                        </router-link>
-                    </div>
                 </div>
             </div>
         </el-card>
@@ -105,7 +91,7 @@
 
     .article-item-content .article-actions {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         padding: 4px 0;
     }
@@ -114,6 +100,5 @@
         padding: 0 4px;
         cursor: pointer;
     }
-
 
 </style>

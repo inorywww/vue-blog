@@ -13,7 +13,7 @@
                     <h1>{{ articleItem.title }}</h1>
                 </div>
                 <div class="article-time">
-                    <span>{{ articleItem.time }}</span>
+                    <span>{{ articleItem.releaseTime|moment("YYYY-MM-DD") }}</span>
                 </div>
             </div>
             <div class="tags-info">
@@ -21,7 +21,7 @@
                         class="tag-item"
                         v-for="(tag, index) in articleItem.tags"
                         :key="index"
-                        :to="`/tags/${tag}`"
+                        :to="{path:'tags',query:{tagName:tag}}"
                 >
                     <el-tag type="info" effect="dark" size="medium">#{{ tag }}</el-tag>
                 </router-link>
@@ -61,6 +61,12 @@
                 <div class="send">
                     <el-button type="success" @click="send">发送</el-button>
                 </div>
+
+            </div>
+            <el-divider/>
+            <div class="message-box">
+                <h1>所有评论</h1>
+                <messages :key="sonKey" :messageType="'articleMessage'"/>
             </div>
         </main>
     </div>
@@ -70,12 +76,13 @@
     import "highlight.js/styles/vs2015.css";
     import {handleScroll, isEmail, alertInfo} from "@/utils/index";
     import {getAllArticle, sendMessage} from "@/api";
-
+    // import Messages from './components/articleDetail/Messages'
+    import Messages from './components/articleDetail/Messages'
     export default {
         name: "Article",
-        components: {},
-        mounted() {
-            getAllArticle()
+        components: {Messages},
+      async  mounted() {
+         await   getAllArticle()
                 .then((res) => {
                     if (res.status == 200) {
                         this.articleItem = res.data.find((item) => {
@@ -110,9 +117,8 @@
                     imagelink: true, // 图片链接
                     code: true, // code
                 },
-
                 articleItem: {},
-                key: 0,
+                sonKey:'',
                 articleComponent: "",
                 markdownForm: {
                     username: "",
@@ -162,11 +168,18 @@
                             break;
                     }
                 }
-                sendMessage(this.markdownForm)
+                this.markdownForm['time'] = new Date().getTime();
+                this.markdownForm['id'] = this.articleItem.articleID;
+                const sendInfo = {
+                    type:'articleMessage',
+                    info:this.markdownForm,
+                }
+                sendMessage(sendInfo)
                     .then((res) => {
                         if (res.status == 201) {
                             this.markdownForm = {};
                             alertInfo("发送成功，请静候回复~", "success");
+                            this.sonKey = new Date().getTime();
                         }
                     })
                     .catch(() => {
@@ -259,6 +272,10 @@
 
     .animate__zoomIn {
         --animate-duration: 1.5s;
+    }
+
+    .message-box{
+        padding-bottom: 30px;
     }
 
     .el-tag--dark.el-tag--info {

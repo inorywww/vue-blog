@@ -1,7 +1,7 @@
 <template>
     <div class="progress">
         <div class="reading-progress" :style="`transform: scaleX(${progress})`"></div>
-        <span class="cat iconfont icon-cat1" :style="`left:${progress*99}%`"> </span>
+        <span class="cat iconfont icon-cat1" :style="`left:${progress*99.5}%`"> </span>
     </div>
 </template>
 

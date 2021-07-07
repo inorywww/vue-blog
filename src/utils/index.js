@@ -1,6 +1,8 @@
 import { Message } from 'element-ui';
 import moment from "moment";
 import store from '@/store'
+import{sendMessage} from '@/api';
+
 let lastPosition = 0; //上一时刻滚动条的位置
 let nowPosition = 0; //下一时刻滚动条的位置
 
@@ -73,7 +75,43 @@ export function alertInfo(message, type) {
         type: type,
     });
 }
+//根据数组里面对象的某个属性排序
+export function compare(property,type) {
+    return (obj1, obj2) => {
+        const value1 = obj1[property];
+        const value2 = obj2[property];
+        if(type === 'ascending'){
+            return value1 - value2; // 升序
+        }
+        else{
+            return value2 - value1;
+        }
+    };
+}
 
+export function sendSays(markdownForm){
+        // 判断输入是否正确
+    if(markdownForm.content.trim() === ''){
+        alertInfo("内容不能为空哦~", "error");
+        return;
+    }
+    markdownForm['time'] = new Date().getTime();
+    const sendInfo = {
+        type:'saysMessage',
+        info:markdownForm,
+    }
+    sendMessage(sendInfo)
+        .then((res) => {
+            if (res.status == 201) {
+                alertInfo("发送成功~", "success");
+                return 'success'
+            }
+        })
+        .catch(() => {
+            alertInfo("发送失败，服务器错误≧ ﹏ ≦", "error");
+            return 'error'
+        });
+}
 export function startLoading() {
     // console.log('start');
     store.state.isLoading = true;

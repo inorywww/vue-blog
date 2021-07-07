@@ -1,7 +1,7 @@
 <template>
     <el-container class="container">
         <el-main style="overflow: hidden">
-            <el-row class="row" :gutter="40">
+            <el-row class="row" :gutter="30">
                 <el-col :span="16">
                     <article-box/>
                     <div class="showMore">

@@ -36,7 +36,7 @@
 
 <style>
     .app-container{
-        width: 60%;
+        width: 70%;
         margin: 0 auto;
     }
     body {
@@ -84,19 +84,20 @@
         margin: 16px;
     }
     .el-button--info {
-        background: transparent !important;
+        background-color: var(--themeBodyColor) !important;
         border: 0 solid #fff !important;
         transition: all .5s !important;
-        padding: 4px !important;
+        padding: 4px 8px !important;
+        opacity: .8 !important;
     }
-
     .el-button--info:hover {
         background-color: var(--themeFontColor) !important;
-        opacity: .4 !important;
+        opacity: .5 !important;
         color: var(--themeBodyColor) !important;
     }
 
     .hljs-keyword, .hljs-selector-tag, .hljs-subst, .hljs-tag, .hljs-name, .hljs-attribute{
         color: #d7acbc !important;
     }
+    
 </style>

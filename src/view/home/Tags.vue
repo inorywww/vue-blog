@@ -17,10 +17,10 @@
                 </div>
                 <div class="article-list">
                     <template v-if="!showList">
-                        <tag-table-show :key="new Date().getTime()"/>
+                        <tag-table-show :key="sonKey"/>
                     </template>
                     <template v-else>
-                        <tag-list-show :key="new Date().getTime()"/>
+                        <tag-list-show :key="sonKey"/>
                     </template>
                 </div>
             </el-col>
@@ -50,18 +50,40 @@
     export default {
         components: {TagTableShow, TagListShow},
         name: "Tags",
-        async created() {
-            this.showTag = this.$route.params.tagName;
+        async mounted() {
             await getAllTags().then((res) => {
                 if (res.status === 200) {
                     this.tags = res.data;
-                    // 获取当前tag
+                    // 获取当前tag 根据url判断 如果为/tags 就重定向到第一个tag，如果为/tags/?tagName = ?,就还是在当前页面
+                    if(!this.$route.query.tagName){
+                        const firstTag = this.tags[0].tagName;
+                        this.showTag = firstTag;
+                        this.$router.replace({
+                            path:`/tags`,
+                            query:{
+                                tagName:this.showTag,
+                            }
+                        });
+                    }
+                    else{
+                        this.showTag = this.$route.query.tagName;
+                    }
                     this.current = this.tags.findIndex((item) => {
                         return item.tagName === this.showTag;
                     });
                     this.tagNum = this.tags[this.current].totalNum;
                 }
             });
+        },
+        watch: { //通过watch来监听路由变化  从而刷新子组件
+            "$route": function (){  
+                this.sonKey = new Date().getTime();
+                this.showTag = this.$route.query.tagName;
+                this.current = this.tags.findIndex((item) => {
+                    return item.tagName === this.showTag;
+                });
+                this.tagNum = this.tags[this.current].totalNum;
+            }  
         },
         computed: {
             showList: { //改变显示方式时动态记录，下次回来该页面也能保持该方式
@@ -79,6 +101,7 @@
                 current: 0,
                 showTag: "",
                 tagNum: 0,
+                sonKey:'',
             };
         },
         methods: {
@@ -86,9 +109,14 @@
                 if (this.showTag !== this.tags[index].tagName) {
                     this.showTag = this.tags[index].tagName;
                     this.tagNum = this.tags[index].totalNum;
-                    this.$router.push(`/tags/${this.tags[index].tagName}`);
+                    this.$router.replace({
+                            path:`/tags`,
+                            query:{
+                                tagName:this.showTag,
+                            }
+                        })
                     this.current = index;
-                    this.$forceUpdate();
+                    // this.$forceUpdate();
                 }
             },
         },

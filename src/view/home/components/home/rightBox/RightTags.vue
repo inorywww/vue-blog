@@ -1,7 +1,7 @@
 <template>
     <div class="right-tags fadeInUp">
         <div class="tags-title">
-            <h3>全部标签</h3>
+            <h3>全部分类</h3>
             <div class="seeMore">
                 <router-link to="/tags">
                     <el-tag type="info" effect="dark"> 查看更多 </el-tag>
@@ -13,7 +13,7 @@
                 <router-link
                     v-for="(item, index) in tags"
                     :key="index"
-                    :to="`/tags/${item.tagName}`"
+                    :to="{path:'tags',query:{tagName:item.tagName}}"
                 >
                     <el-tag type="info" effect="dark">
                         {{ `${item.tagName}[${item.totalNum}]` }}

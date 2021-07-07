@@ -1,7 +1,7 @@
 <template>
-    <div class="say-item fadeInUp">
+  <div class="says-item">
         <el-card :body-style="{ padding: '12px' }">
-            <el-header class="say-header" style="padding: 0">
+            <el-header class="says-header">
                 <div class="header-right">
                     <div class="user-avatar">
                         <router-link to="/about">
@@ -26,15 +26,15 @@
                     <router-link :to="`/says/${item.sayID}`" class="iconfont icon-more"></router-link>
                 </div>
             </el-header>
-            <el-main class="say-content">
-                <div class="say-word">
-                    <a>{{item.sayContent.content}}</a>
+            <el-main class="says-body">
+                 <div class="say-word">
+                    <p class="fadeInUp">{{item.sayContent.content}}</p>
                 </div>
                 <div class="say-cover">
                     <img v-if="item.sayContent.coverSrc!==''" :src="item.sayContent.coverSrc" alt="cover">
                 </div>
             </el-main>
-            <el-footer class="say-footer">
+            <el-footer class="says-footer">
                 <div class="say-actions">
                     <div class="say-like">
                         <el-button type="info" plain>
@@ -53,54 +53,85 @@
                     </div>
                 </div>
             </el-footer>
+           
+             <div class="comment-input " v-show="isComment">
+                    <mavon-editor
+                        v-model="markdownForm.content"
+                        ref="md"
+                        @change="change"
+                        placeholder="说点什么吧~"
+                        :subfield="false"
+                        toolbarsBackground="var(--themeBodyColor)"
+                        previewBackground="var(--themeBodyColor)"
+                        :toolbars="toolbars"
+                        style="min-height: 200px"
+                    />
+                    <el-button type="success" class="send" @click="send">
+                        发送
+                    </el-button>
+            </div>
+             
         </el-card>
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "RightSay",
-        mounted() {
-
+import{sendSays} from '@/api';   
+import {handleScroll} from "@/utils/index";
+          
+export default {
+    name:'SaysItem',
+    props:{
+        item:Object,
+    },
+    components:{
+    },
+    mounted(){
+        this.$nextTick(() => {
+            handleScroll();
+        })
+    },
+    data(){
+        return{
+            toolbars: {
+                fullscreen: true, // 全屏编辑
+                htmlcode: true, // 展示html源码
+                preview: true, // 预览
+                imagelink: true, // 图片链接
+                code: true, // code
+            },
+            markdownForm:{
+                content:'',
+            },
+            isComment:false,
+            sonKey:'',
+        }
+    },
+    methods:{
+        change(value, render) {
+            this.html = render;
         },
-        props: {
-            item: Object
+        comment(){
+            this.isComment = !this.isComment
         },
-        data() {
-            return {
-                toolbars: {
-                    fullscreen: true, // 全屏编辑
-                    htmlcode: true, // 展示html源码
-                    preview: true, // 预览
-                    imagelink: true, // 图片链接
-                    code: true, // code
-                },
-                isComment:false,
-                markdownForm:{
-                    content:'',
-                }
+        send() {
+            this.markdownForm['id'] = this.item.sayID;
+            if(sendSays(this.markdownForm)==='success'){
+                 this.markdownForm.content = '';
+                 this.sonKey = new Date().getTime();
             }
-        },
-        methods: {
-            change(value, render) {
-                this.html = render;
-            },
-            comment(){
-                this.isComment = !this.isComment
-            },
-            
-        },
+        }      
     }
+}
 </script>
-
 <style scoped>
-    .say-item .say-header {
+    .says-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    .say-header .header-right {
+    .says-header .header-right {
         display: flex;
     }
 
@@ -134,61 +165,59 @@
         border-radius: 50%;
     }
 
-    .say-item .el-main, .el-footer {
-        padding: 0;
+    .says-body{
+        padding: 0 !important;
     }
-
-    .say-item .say-content .say-word {
-        word-break: break-all;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        margin: 8px auto;
-    }
-
-    .say-item .say-content .say-cover {
-        margin: 8px auto;
+    .says-body .say-cover {
+        margin: 12px auto 0;
         text-align: center;
         overflow: hidden;
         border-radius: 2%;
-        max-height: 99%;
+        max-height: 100%;
+        max-width: 75%;
     }
 
-    .say-item .say-content .say-cover img {
-        max-width: 100%;
-        max-height: 100%;
+    .says-body .say-cover img {
+        width: 100%;
+        height: 100%;
         transition: all .5s;
     }
 
-    .say-item .say-content .say-cover img:hover {
-        transform: scale(1.07);
+     .says-body .say-cover img:hover {
+        transform: scale(1.1);
     }
-    .say-item .say-footer{
+    .says-footer{
         height: auto !important;
     }
-    .say-item .say-footer > div {
+    .says-footer > div {
         display: flex;
     }
 
-    .say-item .say-footer .say-actions {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: 12px;
-        height: 60%;
+    .say-actions{
+        margin: 16px 0 0;
+        height: 50%;
     }
-
     .say-actions > div{
         width: 33%;
-        height: 100%;
+        height: 35px;
     }
 
     .say-actions > div:nth-child(2){
-        padding: 0 8px;
+        padding: 0 16px;
     }
     
     .say-actions > div > .el-button{
         width: 100%;
         height: 100%;
+    }
+
+     .comment-input {
+        margin: 30px 0 50px;
+        position: relative;
+    }
+    .send{
+        margin: 12px 0;
+        position: absolute;
+        right: 12px;
     }
 </style>

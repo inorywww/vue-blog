@@ -3,7 +3,7 @@
         <el-row
                 v-for="(items, index) in articleItems"
                 :key="index"
-                :gutter="40"
+                :gutter="30"
                 class="article-list-row fadeInUp"
         >
             <el-col
@@ -20,7 +20,7 @@
 
 <script>
     import TableItem from "@/view/home/components/showItem/TableItem";
-    import {handleScroll} from "@/utils/index";
+    
 
     export default {
         name: "AllAritcs",
@@ -34,9 +34,7 @@
                     })
                 );
             }
-            this.$nextTick(() => {
-                handleScroll();
-            })
+           
         },
         props: {},
         components: {

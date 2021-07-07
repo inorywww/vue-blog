@@ -1,7 +1,7 @@
 <template>
-    <router-link  :to="`/article/${item.articleID}`">
+    <router-link :to="`/article/${item.articleID}`">
         <div class="article-list-item">
-            <el-card :body-style="{ padding: '0px' }">
+            <el-card :body-style="{ padding: '0px' }" class="fadeInUp">
                 <el-header class="item-header">
                     <div class="cover-box">
                         <img :src="item.coverSrc" alt="image" class="cover"/>
@@ -17,7 +17,7 @@
                                     class="tag-item"
                                     v-for="(tag, index) in item.tags"
                                     :key="index"
-                                    :to="`/tags/${tag}`"
+                                    :to="{path:'tags',query:{tagName:tag}}"
                             >
                                 <el-tag type="info" effect="dark" size="medium"> #{{ tag }}</el-tag>
                             </router-link>
@@ -32,17 +32,6 @@
                         <div class="article-time">
                             {{ item.releaseTime|moment("YYYY-MM-DD") }}
                         </div>
-                        <div class="actions">
-                            <el-button type="info" class="see iconfont icon-see" plain>
-                                <span>{{item.action.see}}</span>
-                            </el-button>
-                            <el-button type="info" class="like iconfont icon-like" plain>
-                                <span>{{item.action.like}}</span>
-                            </el-button>
-                            <el-button type="info" class="comment iconfont icon-comment" plain>
-                                <span>{{item.action.comment}}</span>
-                            </el-button>
-                        </div>
                     </el-footer>
                 </el-container>
             </el-card>
@@ -51,12 +40,16 @@
 </template>
 
 <script>
+    import {handleScroll} from "@/utils/index";
     export default {
         name: "articleItem",
         props: {
             item: Object,
         },
         mounted() {
+             this.$nextTick(() => {
+                handleScroll();
+            })
         },
         components: {},
         data() {
@@ -94,8 +87,8 @@
     }
 
     .item-header .cover-box img {
-        min-width: 100%;
-        max-height: 100%;
+        width: 100%;
+        height: 100%;
     }
 
     .item-content {

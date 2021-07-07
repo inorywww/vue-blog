@@ -35,27 +35,25 @@ const routes = [{
             },
             {
                 path: '/tags',
-                redirect: '/tags/JS',
-            },
-            {
-                path: '/tags/:tagName',
                 meta: {
                     title: '标签列表'
                 },
                 component: () => import('@/view/home/Tags')
             },
             {
-                path: '/archive',
-                redirect: '/archive/2017-11',
+                path:'/says',
+                meta:{
+                    title:'碎碎念',
+                },
+                component: () => import('@/view/home/Says')
             },
             {
-                path: '/archive/:yearMouthName',
+                path: '/archive',
                 meta: {
                     title: '归档'
                 },
                 component: () => import('@/view/home/Archive')
-            }
-
+            },
         ]
     },
 

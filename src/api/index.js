@@ -26,3 +26,10 @@ export function sendMessage(data) {
         data,
     })
 }
+
+export function getMessage(){
+    return request({
+        url:'messages',
+        method:'get',
+    })
+}

@@ -3,8 +3,8 @@
         <el-row
                 v-for="(items, index) in tagArticles"
                 :key="index"
-                :gutter="40"
-                class="article-list-row fadeInUp"
+                :gutter="30"
+                class="article-list-row"
         >
             <el-col
                     :span="8"
@@ -12,8 +12,7 @@
                     :key="index1"
                     class="article-list-col"
             >
-                <table-item :item="item" :key="index1"/>
-<!--                <router-view :key="$route.fullPath"/>-->
+            <table-item :item="item" :key="index1"/>
             </el-col>
         </el-row>
     </div>
@@ -21,7 +20,6 @@
 
 <script>
     import TableItem from "@/view/home/components/showItem/TableItem";
-    import {handleScroll} from "@/utils/index";
     import {getAllArticle} from "@/api";
 
     export default {
@@ -32,7 +30,7 @@
             await getAllArticle().then((res) => {
                 res.data.forEach((item) => {
                     item.tags.forEach((tag) => {
-                        if (tag === this.$route.params.tagName) {
+                        if (tag === this.$route.query.tagName) {
                             items.push(item);
                         }
                     });
@@ -46,9 +44,6 @@
                     })
                 );
             }
-            this.$nextTick(() => {
-                handleScroll();
-            })
         },
 
         data() {

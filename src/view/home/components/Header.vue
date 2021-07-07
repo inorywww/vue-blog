@@ -73,7 +73,7 @@
             themes = this.$store.state.themes;
             nowTheme.themeName = 'themeLight';
             nowTheme.theme = themes.themeLight;
-            window.addEventListener('scroll', this.handleScroll);
+            window.header = window.addEventListener('scroll', this.handleScroll);
         },
         data() {
             return {
@@ -96,7 +96,7 @@
                     },
                     {
                         icon: 'icon-huati',
-                        page: '/say',
+                        page: '/says',
                         title: '碎碎念',
                     },
                     {

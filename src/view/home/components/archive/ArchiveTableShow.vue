@@ -24,25 +24,21 @@
 import TableItem from "@/view/home/components/showItem/TableItem";
 import { handleScroll } from "@/utils/index";
 import { getAllArticle } from "@/api";
-import { getYear } from "@/utils";
+import { getYearMouth } from "@/utils";
 
 export default {
     name: "archiveTableShow",
     components: { TableItem },
     async mounted() {
-        let sameYearItems = [];
+        let items = [];
         await getAllArticle().then((res) => {
-            sameYearItems = res.data.filter((item) => {
-                //找出相同年份的文章，分别存在sameYearItems
-                return (getYear(item.releaseTime) === this.$route.params.yearName);
-            });
+            items = res.data.filter(item => getYearMouth(item.releaseTime) === this.$route.query.time);
         });
-        let sameMouthItems = [];
-        for (let i = 0; i < sameYearItems.length; i+=3) {
-            //找出相同月份的文章，分别存在sameYearItems
-            sameMouthItems.push([sameYearItems[i], sameYearItems[i + 1], sameYearItems[i + 2]].filter(item => item));
+        for(let i = 0;i < items.length; i += 3){
+            this.archiveItems.push([items[i],items[i+1],items[i+2]].filter((item) => {
+                return item;
+            }))
         }
-        this.archiveItems = sameMouthItems
         this.$nextTick(() => {
             handleScroll();
         });

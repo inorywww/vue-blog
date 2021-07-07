@@ -22,5 +22,26 @@
 </script>
 
 <style>
-   
+    .el-collapse{
+        border: none !important;
+        border-radius: 10px !important;
+        /* padding: 8px 16px; */
+    }
+    .el-collapse-item__header{
+        background-color: var(--themeCardColor) !important;
+        color:var(--themeFontColor) !important;
+        border: none !important;
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+        padding: 4px 12px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+        0 4px 6px -2px rgb(0 0 0 / 5%);
+    }
+    .el-collapse-item__wrap{
+        background-color: var(--themeCardColor) !important;
+        border: none !important;
+    }
+    .el-collapse-item__content{
+        padding: 0 !important;
+    }
 </style>
