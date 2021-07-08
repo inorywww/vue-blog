@@ -88,6 +88,37 @@ export function compare(property,type) {
         }
     };
 }
+export function checkInput(markdownForm){
+    for (const key in markdownForm) {
+        const val = markdownForm[key];
+        switch (key) {
+            case "username":
+                if (val.trim() === "") {
+                    //判断昵称是否为空
+                    alertInfo("昵称不能为空哦~", "error");
+                    return 'error';
+                }
+                continue;
+            case "email":
+                if (!isEmail(val)) {
+                    //判断邮箱是否符合格式
+                    alertInfo("邮箱格式有误哦~", "error");
+                    return 'error';
+                }
+                continue;
+            case "content":
+                if (val.trim() === "") {
+                    //判断内容是否符合形式
+                    alertInfo("内容不能为空哦~", "error");
+                    return 'error';
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    return 'success';
+}
 
 export function sendSays(markdownForm){
         // 判断输入是否正确

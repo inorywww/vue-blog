@@ -11,7 +11,7 @@
                     </div>
                 </header>
                 <main class="item-body">
-                    <div class="introduction">
+                    <div class="introduction-box">
                         <p>
                             {{ item.introduction }}
                         </p>
@@ -68,5 +68,13 @@
 
     .article-list-item:hover {
         transform: scale(1.05);
+    }
+     .item-body .introduction-box p {
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin: 4px !important;
     }
 </style>

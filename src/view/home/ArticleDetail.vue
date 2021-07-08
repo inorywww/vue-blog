@@ -21,7 +21,7 @@
                         class="tag-item"
                         v-for="(tag, index) in articleItem.tags"
                         :key="index"
-                        :to="{path:'tags',query:{tagName:tag}}"
+                        :to="{path:'/tags',query:{tagName:tag}}"
                 >
                     <el-tag type="info" effect="dark" size="medium">#{{ tag }}</el-tag>
                 </router-link>
@@ -61,7 +61,6 @@
                 <div class="send">
                     <el-button type="success" @click="send">发送</el-button>
                 </div>
-
             </div>
             <el-divider/>
             <div class="message-box">
@@ -76,13 +75,12 @@
     import "highlight.js/styles/vs2015.css";
     import {handleScroll, isEmail, alertInfo} from "@/utils/index";
     import {getAllArticle, sendMessage} from "@/api";
-    // import Messages from './components/articleDetail/Messages'
     import Messages from './components/articleDetail/Messages'
     export default {
         name: "Article",
         components: {Messages},
       async  mounted() {
-         await   getAllArticle()
+         await  getAllArticle()
                 .then((res) => {
                     if (res.status == 200) {
                         this.articleItem = res.data.find((item) => {
@@ -131,13 +129,6 @@
             change(value, render) {
                 this.html = render;
             },
-            alertInfo(message, type) {
-                this.$message({
-                    showClose: true,
-                    message,
-                    type: type,
-                });
-            },
             send() {
                 // 判断输入是否正确
                 for (const key in this.markdownForm) {
@@ -174,8 +165,7 @@
                     type:'articleMessage',
                     info:this.markdownForm,
                 }
-                sendMessage(sendInfo)
-                    .then((res) => {
+                sendMessage(sendInfo).then((res) => {
                         if (res.status == 201) {
                             this.markdownForm = {};
                             alertInfo("发送成功，请静候回复~", "success");
@@ -192,7 +182,7 @@
 
 <style scoped>
     .article-container {
-        width: 60%;
+        width: 70%;
         margin: 0 auto;
     }
 
@@ -209,6 +199,7 @@
     .article-info {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         height: auto !important;
         background-color: var(--themeCardColor);
         padding: 16px 12px;
@@ -251,6 +242,7 @@
     .comment-box .comment-info {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         margin: 16px 0;
     }
 
@@ -287,5 +279,32 @@
 
     .el-tag--dark.el-tag--info:hover {
         transform: scale(1.2);
+    }
+        
+    @media (max-width:699px){
+        .article-container{
+          width: 95%;
+      }
+      .article-info{
+          justify-content: center;
+          flex-direction:column;
+          align-items: center;
+      }
+      .baseInfo{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+      .comment-box .comment-info{
+          justify-content: center;
+      }
+      .comment-box .comment-info .email{
+          margin-top: 12px;
+      }
+    }
+    @media (min-width:700px) and (max-width:1300px){
+      .article-container{
+          width: 80%;
+      }
     }
 </style>

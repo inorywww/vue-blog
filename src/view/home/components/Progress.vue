@@ -37,7 +37,7 @@ export default {
 .progress {
     width: 100%;
     height: 5px;
-    z-index: 1000;
+    z-index: 5000;
     background-color: transparent;
     position: fixed;
 }

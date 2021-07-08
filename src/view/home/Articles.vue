@@ -58,7 +58,9 @@
     .title h1 {
         margin: 30px 12px;
     }
-
+    .allAritcle{
+        margin: 0 auto;
+    }
     .title-box {
         display: flex;
         justify-content: space-between;
@@ -72,5 +74,10 @@
 
     .article-box-title .showFormat .el-switch {
         padding-right: 8px;
+    }
+     @media (min-width:1800px){
+         .allAritcle{
+            width: 90%;
+         }
     }
 </style>

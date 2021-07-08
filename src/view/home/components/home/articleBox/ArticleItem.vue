@@ -52,9 +52,8 @@
 </script>
 
 <style scoped>
-
     .article-item {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .article-item .article-item-cover {

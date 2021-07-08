@@ -25,7 +25,8 @@ const store = new Vuex.Store({
             archive:false,
         },
         articleShowList:false,
-        isLoading:true,
+        isShowComment:false,
+
     },
     mutations: {
         updateShow(state, show) {

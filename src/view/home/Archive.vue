@@ -40,8 +40,7 @@
                                 :key="index1"
                                 @click="changeTime(index, index1)"
                                 :class="{
-                                    'tag-item-active':
-                                        item1.time == current,
+                                    'tag-item-active': item1.time == current,
                                 }"
                             >
                                 <span>{{ item1.mouthName }}月</span>
@@ -59,7 +58,7 @@
 import { getAllArticle } from "@/api";
 import ArchiveListShow from "./components/archive/ArchiveListShow";
 import ArchiveTableShow from "./components/archive/ArchiveTableShow";
-import { getYear, getMouth,compare } from "@/utils";
+import { getYear, getMouth, compare } from "@/utils";
 export default {
     components: { ArchiveListShow, ArchiveTableShow },
     name: "archive",
@@ -74,15 +73,15 @@ export default {
                 if (!this.$route.query.time) {
                     nowYearMouth = this.times[0].mouthItems[0].time;
                     this.$router.replace({
-                            path:`/archive`,
-                            query:{
-                                time:nowYearMouth,
-                            }
-                        });
+                        path: `/archive`,
+                        query: {
+                            time: nowYearMouth,
+                        },
+                    });
                 } else {
                     nowYearMouth = this.$route.query.time;
                 }
-                this.showTime = nowYearMouth.split("-")[0]; //获取当前年    
+                this.showTime = nowYearMouth.split("-")[0]; //获取当前年
                 const yearIndex = this.times.findIndex(
                     (item) => item.yearName === this.showTime
                 );
@@ -111,7 +110,7 @@ export default {
     },
     data() {
         return {
-            activeName: '',
+            activeName: "",
             times: [],
             current: 0,
             showTime: "",
@@ -125,21 +124,17 @@ export default {
             this.sonKey = new Date().getTime();
         },
         changeTime(index, index1) {
-            if (
-                this.current !==
-                this.times[index].mouthItems[index1].time
-            ) {
+            if (this.current !== this.times[index].mouthItems[index1].time) {
                 this.showTime = this.times[index].yearName;
                 this.yearArticleNum = this.times[index].yearArticleNum;
-                this.current =
-                this.times[index].mouthItems[index1].time;
+                this.current = this.times[index].mouthItems[index1].time;
                 // this.$router.push(`/archive/${this.current}`);
                 this.$router.replace({
-                        path:`/archive`,
-                        query:{
-                            time:this.current,
-                        }
-                    });
+                    path: `/archive`,
+                    query: {
+                        time: this.current,
+                    },
+                });
                 this.showItems = this.times[index].mouthItems[index1].articles;
             }
         },
@@ -196,8 +191,10 @@ export default {
                 oneYear["yearArticleNum"] = yearArticleNum;
                 this.times.push(oneYear);
             });
-            this.times.sort(compare("yearName",'descending')); //根据年份排序
-            this.times.forEach(item => item.mouthItems.sort(compare("mouthName",'descending'))) //根据月份排序
+            this.times.sort(compare("yearName", "descending")); //根据年份排序
+            this.times.forEach((item) =>
+                item.mouthItems.sort(compare("mouthName", "descending"))
+            ); //根据月份排序
         },
     },
 };
@@ -206,6 +203,7 @@ export default {
 <style scoped>
 .header {
     display: flex;
+    flex-wrap: wrap;
     background: var(--themeCardColor);
     border-radius: 6px;
     padding: 8px;
@@ -219,6 +217,7 @@ export default {
 .body {
     margin-top: 20px;
     position: relative;
+    display: flex;
 }
 
 .aside {
@@ -248,7 +247,9 @@ export default {
     transition: all 0.1s ease;
     cursor: pointer;
 }
-
+.years-list .year-item .mouth:nth-child(1) {
+    margin-top: 16px;
+}
 .years-list .year-item .mouth:not(.tag-item-active):hover {
     transform: scale(1.1);
 }
@@ -257,5 +258,36 @@ export default {
     padding: 8px 16px;
     margin-bottom: 20px;
     text-align: right;
+}
+@media (max-width: 799px) {
+    .header {
+        justify-content: center;
+    }
+    .body {
+        flex-direction: column-reverse;
+    }
+    .main {
+        width: 100%;
+    }
+    .aside {
+        width: 80%;
+        position: static;
+        margin: 20px auto;
+    }
+}
+@media (min-width: 800px) and (max-width: 1600px) {
+    .main {
+        width: 80%;
+    }
+    .aside {
+        width: 20%;
+        position: static;
+    }
+}
+@media (min-width: 1600px) and (max-width: 2000px) {
+    .archive {
+        width: 120%;
+        transform: translateX(-10%);
+    }
 }
 </style>

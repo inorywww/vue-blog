@@ -1,8 +1,8 @@
 <template>
     <el-container class="container">
-        <el-main style="overflow: hidden">
-            <el-row class="row" :gutter="30">
-                <el-col :span="16">
+        <el-main  style="overflow: hidden">
+            <el-row class="row" >
+                <el-col :span="16" class="row-left">
                     <article-box/>
                     <div class="showMore">
                         <router-link to="/article">
@@ -10,7 +10,7 @@
                         </router-link>
                     </div>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" class="row-right">
                     <right-box/>
                 </el-col>
             </el-row>
@@ -43,6 +43,31 @@
 </script>
 
 <style scoped>
+
+    @media (max-width:799px){
+        .row-right{
+            display: none;
+        }
+        .el-col-16{
+            width: 100%;
+        }
+    }
+    @media (min-width:800px) and (max-width:1500px){
+        .el-col-16{
+            width: 60%;
+        }
+        .el-col-8{
+            width: 40%;
+        }
+    }
+     @media (min-width:15000px){
+        .el-col-16{
+            width: 65%;
+        }
+        .el-col-8{
+            width: 35%;
+        }
+    }
     .row {
         margin: 0 auto !important;
     }
@@ -54,7 +79,6 @@
 
     .showMore {
         text-align: center;
-
     }
 
     .el-button--success {

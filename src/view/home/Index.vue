@@ -36,8 +36,13 @@
 
 <style>
     .app-container{
-        width: 70%;
+        width: 60%;
         margin: 0 auto;
+    }
+    @media (max-width:1600px){
+        .app-container{
+            width: 90%;
+        }
     }
     body {
         margin: 0;
@@ -73,6 +78,7 @@
     .el-backtop{
         color: #272727 !important;
         font-size: 24px;
+        z-index: 2000;
     }
     .el-backtop i{
         display: none;
@@ -99,5 +105,10 @@
     .hljs-keyword, .hljs-selector-tag, .hljs-subst, .hljs-tag, .hljs-name, .hljs-attribute{
         color: #d7acbc !important;
     }
-    
+    .v-note-wrapper .v-note-op .v-left-item, .v-note-wrapper .v-note-op .v-right-item{
+        -webkit-flex:none !important; 
+    }
+    .v-note-wrapper .v-note-op .v-right-item{
+        max-width: 100% !important;
+    }
 </style>

@@ -25,13 +25,19 @@ import {getMessage} from "@/api";
 import { compare } from "@/utils";
 export default {
     name:'messages',
-   async mounted(){
+    async mounted(){
         await getMessage().then((res) => {
                 this.messageItem = res.data.filter(item => {
-                    return (item.type === this.messageType && item.info.id === Number(this.$route.params.id))
+                    if(this.messageType === 'articleMessage'){
+                        return (item.type === this.messageType && item.info.id === Number(this.$route.params.id))
+                    }
+                    else{
+                         return (item.type === this.messageType)
+                    }
                 });
                 //排序 
                 this.messageItem.sort(compare("id",'descending')); 
+
             })
     },
     props:{

@@ -168,6 +168,13 @@ export default {
     .says-body{
         padding: 0 !important;
     }
+    .says-body .say-word p{
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
     .says-body .say-cover {
         margin: 12px auto 0;
         text-align: center;
@@ -220,4 +227,18 @@ export default {
         position: absolute;
         right: 12px;
     }
+    .v-note-wrapper .v-note-op .v-right-item{
+        max-width: 100% !important;
+    }
+    @media (max-width:699px){
+        .says-body > .say-cover{
+            max-width: 100%;
+        }
+    }
+    @media (min-width:700px) and (max-width:1300px){
+        .says{
+            width: 85%;
+      }
+    }
+    
 </style>

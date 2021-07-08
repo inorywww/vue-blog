@@ -22,7 +22,7 @@
                                 <el-tag type="info" effect="dark" size="medium"> #{{ tag }}</el-tag>
                             </router-link>
                         </div>
-                        <div class="introduction-box">
+                        <div class="introduction-box"> 
                             <p>
                                 {{ item.introduction }}
                             </p>
@@ -62,6 +62,7 @@
 <style scoped>
     .article-list-item {
         transition: all 0.4s;
+        padding: 15px;
     }
 
     .article-list-item:hover {
@@ -133,4 +134,5 @@
     .el-tag--dark.el-tag--info:hover {
         transform: scale(1.2);
     }
+
 </style>

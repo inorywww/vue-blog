@@ -32,7 +32,21 @@
 
 <style scoped>
     .says{
-        width: 70%;
+        width: 75%;
         margin: 0 auto;
+    }
+    .content-top{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    @media (max-width:699px){
+        .says{
+            width: 100%;
+        }
+    }
+    @media (min-width:700px) and (max-width:1300px){
+        .says{
+            width: 85%;
+      }
     }
 </style>

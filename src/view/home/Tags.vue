@@ -4,7 +4,7 @@
             <h1>#{{ showTag }}</h1>
             <h1>共{{tagNum}}篇文章</h1>
         </header>
-        <el-row :gutter="40" class="body">
+        <el-row :gutter="30" class="body">
             <el-col :span="20" class="main">
                 <div class="showFormat">
                     <el-switch
@@ -126,6 +126,7 @@
 <style scoped>
     .header {
         display: flex;
+        flex-wrap: wrap;
         background: var(--themeCardColor);
         border-radius: 6px;
         padding: 8px;
@@ -139,6 +140,7 @@
     .body {
         margin-top: 20px;
         position: relative;
+        display: flex;
     }
 
     .aside {
@@ -176,4 +178,45 @@
         margin-bottom: 20px;
         text-align: right;
     }
+    .app-container{
+            width: 80% !important;
+        }
+    @media (max-width:799px){
+        .header{
+        justify-content: center;
+        }
+        .body{
+            flex-direction: column-reverse;
+        }
+       .main {
+            width: 100%;
+        }
+        .aside {
+            width: 100%;
+            position:static;
+        }
+        .aside .tags-list{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .tags-list .tag-item{
+            width: 35%;
+        }
+    }
+     @media (min-width:800px) and (max-width:1600px){
+        .main {
+            width: 80%;
+        }
+        .aside {
+            width: 20%;
+            position:static;
+        }
+    }
+    @media (min-width:1600px) and (max-width:2000px){
+         .tags{
+            width: 120%;
+            transform: translateX(-10%);
+        }
+    }
 </style>
+ 
