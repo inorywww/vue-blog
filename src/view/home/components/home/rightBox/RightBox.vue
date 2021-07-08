@@ -7,14 +7,7 @@
             <right-tags />
         </template>
         <template>
-            <div class="right-say">
-                <div class="say-title">
-                    <h3>碎碎念</h3>
-                </div>
-                <template v-for="(item, index) in says">
-                    <right-say :key="index" :item="item" />
-                </template>
-            </div>
+            <right-say />
         </template>
     </div>
 </template>
@@ -23,7 +16,6 @@
 import RightAboutMe from "@/view/home/components/home/rightBox/RightAboutMe";
 import RightSay from "@/view/home/components/home/rightBox/RightSay";
 import RightTags from "@/view/home/components/home/rightBox/RightTags";
-import { getAllSays } from "@/api";
 
 export default {
     name: "RightBox",
@@ -33,15 +25,7 @@ export default {
         RightSay,
     },
     mounted() {
-        getAllSays()
-            .then((res) => {
-                if (res.status == 200) {
-                    this.says = res.data;
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+      
     },
     data() {
         return {
@@ -53,4 +37,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

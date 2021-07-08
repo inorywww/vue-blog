@@ -27,6 +27,13 @@ export function sendMessage(data) {
     })
 }
 
+export function getAuthorInfo(){{
+    return request({
+        url:'authorInfo',
+        method:'get',
+    })
+}}
+
 export function getMessage(){
     return request({
         url:'messages',

@@ -55,6 +55,13 @@ const routes = [{
                 component: () => import('@/view/home/Archive')
             },
             {
+                path:'/about',
+                meta:{
+                    title:'关于我'
+                },
+                component:() => import('@/view/home/AboutMe')
+            },
+            {
                 path:'/message',
                 meta: {
                     title:'留言'

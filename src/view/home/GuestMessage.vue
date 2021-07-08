@@ -40,7 +40,7 @@
         <el-divider></el-divider>
         <div class="message-box">
             <h1>所有留言</h1>
-            <messages :key="sonKey" :messageType="'guestMessage'" />
+            <message-list :key="sonKey" :messageType="'guestMessage'" />
         </div>
     </div>
 </template>
@@ -48,11 +48,11 @@
 <script>
 import { checkInput, alertInfo } from "@/utils/index";
 import { sendMessage } from "@/api";
-import Messages from "./components/articleDetail/Messages";
+import MessageList from "./components/MessageList";
 export default {
     name: "GuestMessage",
     components: {
-        Messages,
+        MessageList,
     },
     data() {
         return {
@@ -82,7 +82,6 @@ export default {
                     type: "guestMessage",
                     info: this.markdownForm,
                 };
-                console.log(sendInfo);
                 sendMessage(sendInfo)
                     .then((res) => {
                         if (res.status == 201) {
