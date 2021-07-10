@@ -5,24 +5,23 @@
                 <div class="header-right">
                     <div class="user-avatar">
                         <router-link to="/about">
-                            <img :src="item.sayHeader.userAvatar" alt="image" />
+                            <img :src="item.userAvatar" alt="image" />
                         </router-link>
                     </div>
                     <div class="header-content">
                         <div class="content-top">
                             <router-link to="/about" class="user-name">
-                                {{ item.sayHeader.userName }}
+                                {{ item.userName }}
                             </router-link>
                             <a class="shallow"
                                 >{{
-                                    item.sayHeader.releaseTime
-                                        | moment("YYYY-MM-DD")
+                                    item.releaseTime | moment("YYYY-MM-DD")
                                 }}
                             </a>
                         </div>
                         <div class="content-footer">
                             <a class="shallow">
-                                {{ item.sayHeader.userIdentity }}
+                                {{ item.userIdentity }}
                             </a>
                         </div>
                     </div>
@@ -36,12 +35,12 @@
             </el-header>
             <el-main class="says-body">
                 <div class="say-word">
-                    <p class="fadeInUp">{{ item.sayContent.content }}</p>
+                    <p class="fadeInUp">{{ item.content }}</p>
                 </div>
                 <div class="say-cover">
                     <img
-                        v-if="item.sayContent.coverSrc !== ''"
-                        :src="item.sayContent.coverSrc"
+                        v-if="item.coverSrc !== ''"
+                        :src="item.coverSrc"
                         alt="cover"
                     />
                 </div>

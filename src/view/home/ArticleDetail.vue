@@ -85,22 +85,21 @@
 <script>
 import "highlight.js/styles/vs2015.css";
 import { handleScroll, alertInfo, checkInput } from "@/utils/index";
-import { getAllArticle, sendMessage} from "@/api";
+import { getOneArticle, sendMessage} from "@/api";
 import MessageList from "./components/MessageList";
 export default {
     name: "Article",
     components: { MessageList },
     async mounted() {
-        await getAllArticle()
+        const articleID = Number(this.$route.params.id);
+        await getOneArticle(articleID)
             .then((res) => {
                 if (res.status == 200) {
-                    this.articleItem = res.data.find((item) => {
-                        //找到当前这一篇文章
-                        return item.articleID === Number(this.$route.params.id);
-                    });
-
-                    document.title = this.articleItem.title; //设置标题
+                    this.articleItem = res.data;
+                    //设置标题
+                    document.title = this.articleItem.title; 
                     let path = this.articleItem.fileName;
+                    // 渲染markdown
                     this.$options.components["articleMD"] =
                         require(`@/assets/md/${path}`).default;
                     this.articleComponent = "articleMD";
@@ -143,16 +142,17 @@ export default {
         },
         send() {
             // 判断输入是否正确
-            if (checkInput(this.markdownForm) === "success") {
+            if (checkInput(this.markdownForm)) {
                 this.markdownForm["time"] = new Date().getTime();
                 this.markdownForm["id"] = this.articleItem.articleID;
                 const sendInfo = {
                     type: "articleMessage",
                     info: this.markdownForm,
                 };
+
                 sendMessage(sendInfo)
                     .then((res) => {
-                        if (res.status == 201) {
+                        if (res.status == 200) {
                             this.markdownForm = {};
                             alertInfo("发送成功，请静候回复~", "success");
                             this.sonKey = new Date().getTime();

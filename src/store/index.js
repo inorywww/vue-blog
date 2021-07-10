@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"
-import fa from "element-ui/src/locale/lang/fa";
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
@@ -24,9 +23,7 @@ const store = new Vuex.Store({
             tags:false,
             archive:false,
         },
-        articleShowList:false,
         isShowComment:false,
-
     },
     mutations: {
         updateShow(state, show) {

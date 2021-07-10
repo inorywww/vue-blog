@@ -76,7 +76,7 @@ export default {
             this.html = render;
         },
         send() {
-            if (checkInput(this.markdownForm) === "success") {
+            if (checkInput(this.markdownForm)) {
                 this.markdownForm["time"] = new Date().getTime();
                 const sendInfo = {
                     type: "guestMessage",
@@ -84,7 +84,7 @@ export default {
                 };
                 sendMessage(sendInfo)
                     .then((res) => {
-                        if (res.status == 201) {
+                        if (res.status == 200) {
                             this.markdownForm = {};
                             alertInfo("发送成功，请静候回复~", "success");
                             this.sonKey = new Date().getTime();

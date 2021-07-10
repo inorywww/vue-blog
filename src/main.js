@@ -3,9 +3,6 @@ import App from './App.vue'
 
 import router from './router' //自动扫描路由配置
 import store from './store'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-Vue.use(VueAxios, axios);
 
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
@@ -18,8 +15,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-import API from './api'
-Vue.prototype.$api = API;
 Vue.config.productionTip = false;
 Vue.use(require('vue-moment'));
 

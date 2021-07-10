@@ -252,40 +252,39 @@
       }
     },
     {
-        "sayID": 3,
-        "sayHeader": {
-          "userAvatar": "/static/image/avatar.jpg",
-          "userName": "inroyww",
-          "releaseTime": 1511124470735,
-          "userIdentity": "博主、管理员"
-        },
-        "sayContent": {
-          "content": "以前注册过的用户，建议先登上以前的账号，再在个人设置里手动绑定第三方登录。",
-          "coverSrc": "https://oss-cdn.yevpt.com/post/bg-images/202006/733bb8209e3f4613ddb0d4e229293636.jpg?a=bc018da0e779efb6ad680294d4fce4fb&b=60c2da69"
-        },
-        "sayData": {
-          "viewData": 15,
-          "commentData": 3
-        }
+      "sayID": 3,
+      "sayHeader": {
+        "userAvatar": "/static/image/avatar.jpg",
+        "userName": "inroyww",
+        "releaseTime": 1511124470735,
+        "userIdentity": "博主、管理员"
       },
-      {
-        "sayID": 4,
-        "sayHeader": {
-          "userAvatar": "/static/image/avatar.jpg",
-          "userName": "inroyww",
-          "releaseTime": 1511124470735,
-          "userIdentity": "博主、管理员"
-        },
-        "sayContent": {
-          "content": "以前注册过的用户，建议先登上以前的账号，再在个人设置里手动绑定第三方登录。",
-          "coverSrc": "https://oss-cdn.yevpt.com/post/bg-images/202006/733bb8209e3f4613ddb0d4e229293636.jpg?a=bc018da0e779efb6ad680294d4fce4fb&b=60c2da69"
-        },
-        "sayData": {
-          "viewData": 15,
-          "commentData": 3
-        }
+      "sayContent": {
+        "content": "以前注册过的用户，建议先登上以前的账号，再在个人设置里手动绑定第三方登录。",
+        "coverSrc": "https://oss-cdn.yevpt.com/post/bg-images/202006/733bb8209e3f4613ddb0d4e229293636.jpg?a=bc018da0e779efb6ad680294d4fce4fb&b=60c2da69"
+      },
+      "sayData": {
+        "viewData": 15,
+        "commentData": 3
       }
-      
+    },
+    {
+      "sayID": 4,
+      "sayHeader": {
+        "userAvatar": "/static/image/avatar.jpg",
+        "userName": "inroyww",
+        "releaseTime": 1511124470735,
+        "userIdentity": "博主、管理员"
+      },
+      "sayContent": {
+        "content": "以前注册过的用户，建议先登上以前的账号，再在个人设置里手动绑定第三方登录。",
+        "coverSrc": "https://oss-cdn.yevpt.com/post/bg-images/202006/733bb8209e3f4613ddb0d4e229293636.jpg?a=bc018da0e779efb6ad680294d4fce4fb&b=60c2da69"
+      },
+      "sayData": {
+        "viewData": 15,
+        "commentData": 3
+      }
+    }
   ],
   "tags": [
     {
@@ -382,9 +381,29 @@
         "id": 0
       },
       "id": 5
+    },
+    {
+      "type": "articleMessage",
+      "info": {
+        "username": "在",
+        "email": "a@qq.com",
+        "content": "ddddddddddd",
+        "time": 1625890826537,
+        "id": 0
+      },
+      "id": 6
+    },
+    {
+      "type": "saysMessage",
+      "info": {
+        "username": "dasdas",
+        "email": "1@qq.com",
+        "content": "dadasd",
+        "time": 1625890843098,
+        "id": 0
+      },
+      "id": 7
     }
   ],
-  "authorInfo":{
-      
-  }
+  "authorInfo": {}
 }

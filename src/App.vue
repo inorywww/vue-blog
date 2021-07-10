@@ -22,6 +22,10 @@
 </script>
 
 <style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
     .el-collapse{
         border: none !important;
         border-radius: 10px !important;

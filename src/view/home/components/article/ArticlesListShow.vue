@@ -12,12 +12,17 @@
 
 <script>
     import ListItem from "@/view/home/components/showItem/ListItem";
-
+    import {getAllArticle} from "@/api";
     export default {
         name: "AllAritcs",
         mounted() {
-            this.articleItems = this.$store.state.allArticles;
-    
+           getAllArticle().then((res) => {
+                    if (res.status == 200) {
+                        this.articleItems = res.data;
+                    }
+                }).catch((err) => {
+                    console.log(err);
+                });
         },
         components: {
             ListItem,

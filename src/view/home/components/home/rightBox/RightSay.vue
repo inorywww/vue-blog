@@ -1,7 +1,7 @@
 <template>
     <div class="right-say-list">
         <div class="say-item" v-for="(item, index) in says" :key="index">
-            <div class="say-title">
+            <div class="say-title" v-if="index === 0">
                 <h3>碎碎念</h3>
                 <div class="seeMore">
                     <router-link to="/says">
@@ -16,7 +16,7 @@
                             <div class="user-avatar">
                                 <router-link to="/about">
                                     <img
-                                        :src="item.sayHeader.userAvatar"
+                                        :src="item.userAvatar"
                                         alt="image"
                                     />
                                 </router-link>
@@ -24,18 +24,17 @@
                             <div class="header-content">
                                 <div class="content-top">
                                     <router-link to="/about" class="user-name">
-                                        {{ item.sayHeader.userName }}
+                                        {{ item.userName }}
                                     </router-link>
                                     <a class="shallow"
                                         >{{
-                                            item.sayHeader.releaseTime
-                                                | moment("YYYY-MM-DD")
+                                            item.releaseTime | moment("YYYY-MM-DD")
                                         }}
                                     </a>
                                 </div>
                                 <div class="content-footer">
                                     <a class="shallow">
-                                        {{ item.sayHeader.userIdentity }}
+                                        {{ item.userIdentity }}
                                     </a>
                                 </div>
                             </div>
@@ -49,12 +48,12 @@
                     </el-header>
                     <el-main class="say-content">
                         <div class="say-word">
-                            <a>{{ item.sayContent.content }}</a>
+                            <a>{{ item.content }}</a>
                         </div>
                         <div class="say-cover">
                             <img
-                                v-if="item.sayContent.coverSrc !== ''"
-                                :src="item.sayContent.coverSrc"
+                                v-if="item.coverSrc !== ''"
+                                :src="item.coverSrc"
                                 alt="cover"
                             />
                         </div>
@@ -141,7 +140,9 @@ export default {
 .tags-body .el-tag--dark.el-tag--info:hover {
     transform: scale(1.2);
 }
-
+.say-body .el-card{
+    margin-bottom:40px;
+}
 .say-body .say-header {
     display: flex;
     align-items: center;

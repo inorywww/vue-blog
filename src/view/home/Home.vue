@@ -43,7 +43,6 @@
 </script>
 
 <style scoped>
-
     @media (max-width:799px){
         .row-right{
             display: none;

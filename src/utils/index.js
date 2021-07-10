@@ -96,28 +96,28 @@ export function checkInput(markdownForm){
                 if (val.trim() === "") {
                     //判断昵称是否为空
                     alertInfo("昵称不能为空哦~", "error");
-                    return 'error';
+                    return false;
                 }
                 continue;
             case "email":
                 if (!isEmail(val)) {
                     //判断邮箱是否符合格式
                     alertInfo("邮箱格式有误哦~", "error");
-                    return 'error';
+                    return false;
                 }
                 continue;
             case "content":
                 if (val.trim() === "") {
                     //判断内容是否符合形式
                     alertInfo("内容不能为空哦~", "error");
-                    return 'error';
+                    return false;
                 }
                 break;
             default:
                 break;
         }
     }
-    return 'success';
+    return true;
 }
 
 export function sendSays(markdownForm){

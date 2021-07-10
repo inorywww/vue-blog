@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <span>这里什么也没有</span>
+        <img src="/static/image/404.gif">
     </div>
 </template>
 
@@ -12,8 +12,9 @@
         height: 100vh;
         width: 100%;
     }
-    span {
-        font-size: 30px;
-        font-weight: 800;
-    }
+   img{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+   }
 </style>

@@ -21,18 +21,18 @@
 </template>
 
 <script>
-import {getMessage} from "@/api";
+import {getOneTypeMessage} from "@/api";
 import { compare ,handleScroll} from "@/utils";
 export default {
     name:'messages',
-    async mounted(){
-        await getMessage().then((res) => {
+    mounted(){
+        getOneTypeMessage(this.messageType).then(res => {
                 this.messageItem = res.data.filter(item => {
                     if(this.messageType === 'articleMessage'){
-                        return (item.type === this.messageType && item.info.id === Number(this.$route.params.id))
+                        return item.info.id === Number(this.$route.params.id);
                     }
                     else{
-                         return (item.type === this.messageType)
+                         return item;
                     }
                 });
                 //排序 

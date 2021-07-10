@@ -15,14 +15,14 @@
 
 <script>
 import ArticleItem from "@/view/home/components/home/articleBox/ArticleItem";
-import { getAllArticle } from "@/api";
+import { getAllArticle } from "@/api/index";
 export default {
     name: "ArticleBox",
     mounted() {
         getAllArticle().then((res) => {
             if (res.status == 200) {
                 this.articleItems = res.data.slice(0,6);
-                this.$store.state.allArticles = res.data;
+                // this.$store.state.allArticles = res.data;
             }
         }).catch(err => {
             console.log(err);

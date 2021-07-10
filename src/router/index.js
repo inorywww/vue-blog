@@ -1,10 +1,13 @@
 //导入vue和vue-router组件
 import Vue from "vue"
 import VueRouter from "vue-router";
-import store from '../store'
+import store from '../store';
+import { getToken } from "@/utils/auth";
+import { alertInfo } from "@/utils/index";
 //组件懒加载
 const Index = () => import('@/view/home/Index');
 const notFoundError = () => import('@/view/404/Index');
+const Login = () => import('@/view/login/Index')
 Vue.use(VueRouter);
 
 const routes = [{
@@ -70,9 +73,24 @@ const routes = [{
             }
         ]
     },
-
     {
-        path: '/404',
+        path:'/login',
+        meta:{
+            title:'管理员登录'
+        },
+        component: Login
+    },
+    {
+        path:'/dashboard',
+        meta:{
+            title:'管理面板',
+            requireAuth:true,
+        },
+        component: () => import('@/view/admin/DashBoard'),
+    },
+    {
+        path: '*',
+        name:'/404',
         meta: {
             title: '这里什么都没有'
         },
@@ -98,6 +116,14 @@ const router = new VueRouter({
 
 // 路由发生变化修改页面title
 router.beforeEach( (to, from, next) => {
+    // 判断当前页面是否需要授权
+    if(to.meta.requireAuth){
+        if(!getToken()){
+            alertInfo('尚未授权！','error');
+            next('/login');
+            return;
+        }
+    }
     if (to.meta.title) {
         if (to.meta.title!=='articleDetail') {
             document.title = to.meta.title;

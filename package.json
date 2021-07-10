@@ -11,11 +11,13 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
     "clipboard": "^2.0.8",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
     "highlightjs-line-numbers.js": "^2.8.0",
     "json-server": "^0.16.3",
+    "jwt-decode": "^3.1.2",
     "marked": "^2.1.3",
     "mavon-editor": "^2.9.1",
     "moment": "^2.29.1",
@@ -25,7 +27,8 @@
     "vue-markdown": "^2.2.4",
     "vue-moment": "^4.1.0",
     "vuex": "^3.6.2",
-    "vuex-persistedstate": "^4.0.0-beta.3"
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "web-storage-cache": "^1.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
