@@ -24,8 +24,31 @@ const store = new Vuex.Store({
             archive:false,
         },
         isShowComment:false,
+        isCollapse:false,
+        allTabs:[],
+        currentView:'Home'
     },
     mutations: {
+        delAllTab(state){
+            console.log('delAllTab');
+            state.allTabs = [];
+        },
+        addTab(state,tab){
+            const isHas = state.allTabs.find(item => {
+                return item.name === tab.name 
+            });
+            if(!isHas){ // 不存在才加入
+                state.allTabs.push(tab);
+            }
+        },
+        delTab(state,name){
+            state.allTabs = state.allTabs.filter(item => {
+                return item.name !== name
+            })
+        },
+        changeCurrentView(state,cv){
+            state.currentView = cv;
+        },
         updateShow(state, show) {
             state.headerIsShow = show;
         },

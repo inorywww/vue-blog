@@ -26,7 +26,7 @@ function endLoading(){
 service.interceptors.request.use(config => {
     // 请求前做点什么？
     // 加载动画
-    // startLoading();
+    startLoading();
     if(getToken()){
         //判断当前token是否存在，如果存在就设置请求头header
         config.headers.Authorization = getToken();
@@ -38,10 +38,10 @@ service.interceptors.request.use(config => {
 
 // 响应拦截
 service.interceptors.response.use(response => {
-    // endLoading();
+    endLoading();
     return response;
 }, error => {
-    // endLoading();
+    endLoading();
     alertInfo(error.response.data,'error');
     // 获取错误状态码
     const {status} = error.response;
