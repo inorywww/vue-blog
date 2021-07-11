@@ -26,20 +26,27 @@
 
 <script>
 const Home = () => import("../Home");
-const Articles = () => import("../Articles");
-const Says = () => import("../Says");
-const Tags = () => import("../Tags");
-const Messages = () => import("../Messages");
+//文章管理
+const ArticleAll = () => import("../Articles");
+const ArticleRelease = () => import("../ReleaseArticle");
+const ArticleTags = () => import("../Tags");
+//碎语管理
+const SayAll = () => import("../Says");
+const SayRelease = () => import("../ReleaseSay")
+//留言管理
+const Message = () => import("../Messages");
 export default {
     name: "mainContent",
     mounted() {
     },
     components: {
         Home,
-        Articles,
-        Says,
-        Tags,
-        Messages,
+        ArticleAll,
+        ArticleRelease,
+        ArticleTags,
+        SayAll,
+        SayRelease,
+        Message,
     },
     computed: {
         allTabs() {
@@ -61,22 +68,34 @@ export default {
     },
     watch: {
         $route: function () {
-            const s = this.$route.params.name;
-            this.$store.commit(
-                "changeCurrentView",
-                s.slice(0, 1).toUpperCase() + s.slice(1).toLowerCase()
-            );
+            let s = this.$route.params.name;
+            // 判断是否为子菜单
+            if(this.$route.params.subName){
+                s += `-${this.$route.params.subName}`
+            }
+            this.$store.commit("changeCurrentView",s);
         },
     },
     methods: {
         changeTab(target) {
             const chooseTab = this.allTabs[target.index];
-            if (this.$route.params.name !== chooseTab.path) {
-                this.$router.replace(`/dashboard/${chooseTab.path}`);
+            let path = this.$route.params.name;
+            // 切换显示的tab
+            if(chooseTab.fatherTitle){
+                // 判断是否为二级菜单
+                if (`${path}/${this.$route.params.subName}` !== chooseTab.path) {
+                    this.$router.replace(`/dashboard/${chooseTab.path}`);
+                }
             }
+            else{
+                 if (path !== chooseTab.path) {
+                    this.$router.replace(`/dashboard/${chooseTab.path}`);
+                }
+            }
+          
         },
         removeTab(targetName) {
-            if (targetName === "Home") {
+            if (targetName === "home") {
                 return;
             }
             let tabs = this.allTabs;
@@ -86,8 +105,8 @@ export default {
                     if (tab.name === targetName) {
                         let nextTab = tabs[index + 1] || tabs[index - 1];
                         if (nextTab) {
-                            activeName = nextTab.name;
-                            this.$router.replace(`/dashboard/${activeName.toLowerCase()}`);
+                            const pathItem = this.allTabs.find(item => item.name === nextTab.name)
+                            this.$router.replace(`/dashboard/${pathItem.path}`);
                         }
                     }
                 });

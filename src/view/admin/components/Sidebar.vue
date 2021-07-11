@@ -3,8 +3,6 @@
         <el-menu
             :default-active="currentView"
             class="sidebar"
-            @open="handleOpen"
-            @close="handleClose"
             :collapse="this.$store.state.isCollapse"
             background-color="#304156"
             text-color="#fff"
@@ -14,16 +12,33 @@
                 <img src="/static/image/avatar.jpg" alt="image" />
                 <h2 v-show="!this.$store.state.isCollapse">博客后台管理</h2>
             </div>
-            <el-menu-item 
-                v-for="(item, index) in elMenus" 
-                :key="index"
-                :index="item.name"
-                @click="changeMenu(index)"
-            >
-                <i :class="`iconfont ${item.icon}`"></i>
-                <span slot="title">{{item.title}}</span>
-            </el-menu-item>
-           
+            <template v-for="(item, index) in navItems">
+                <template v-if="item.subs">
+                    <el-submenu :index="item.name" :key="index">
+                        <template slot="title">
+                            <i :class="`iconfont ${item.icon}`"></i>
+                            <span>{{ item.title }}</span>
+                        </template>
+                        <template>
+                            <el-menu-item
+                                v-for="(sub, sindex) in item.subs"
+                                :index="sub.name"
+                                :key="sindex"
+                                class="submenu-item"
+                                @click="changeMenu(sub)"
+                            >
+                                {{ sub.title }}
+                            </el-menu-item>
+                        </template>
+                    </el-submenu>
+                </template>
+                <template v-else>
+                    <el-menu-item :index="item.name" :key="index" @click="changeMenu(item)">
+                        <i :class="`iconfont ${item.icon}`"></i>
+                        <span>{{ item.title }}</span>
+                    </el-menu-item>
+                </template>
+            </template>
         </el-menu>
     </div>
 </template>
@@ -33,77 +48,115 @@ export default {
     data() {
         return {
             sidebarIcon: "el-icon-s-fold",
-            elMenus:[
+            navItems: [
                 {
-                    icon:'icon-indexactive',
-                    title:'首页',
-                    name:'Home',
-                    path:'home',
+                    icon: "icon-indexactive",
+                    title: "首页",
+                    name: "home",
+                    path:'home'
                 },
                 {
-                    icon:'icon-article',
-                    title:'文章管理',
-                    name: "Articles",
-                    path:'articles'
+                    icon: "icon-article",
+                    title: "博客管理",
+                    name: "article-all",
+                    path: "article/all",
+                    subs: [
+                        {
+                            icon: "icon-article",
+                            title: "文章管理",
+                            fatherTitle:'博客管理',
+                            name: "article-all",
+                            path: "article/all",
+                        },
+                        {
+                            icon: "icon-article",
+                            title: "发布文章",
+                            fatherTitle:'博客管理',
+                            name: "article-release",
+                            path: "article/release",
+                        },
+                        {
+                            icon: "icon-tag",
+                            title: "分类管理",
+                            fatherTitle:'博客管理',
+                            name: "article-tags",
+                            path: "article/tags",
+                        },
+                    ],
                 },
                 {
-                    icon:'icon-huati',
-                    title:'碎语管理',
-                    name: "Says",
-                    path:'says'
+                    icon: "icon-huati",
+                    title: "碎语管理",
+                    name: "say-all",
+                    path: "say/all",
+                    subs: [
+                        {
+                            icon: "icon-article",
+                            title: "全部碎语",
+                            fatherTitle:'碎语管理',
+                            name: "say-all",
+                            path: "say/all",
+                        },
+                        {
+                            icon: "icon-article",
+                            title: "发布碎语",
+                            fatherTitle:'碎语管理',
+                            name: "say-release",
+                            path: "say/release",
+                        },
+                    ],
                 },
                 {
-                    icon:'icon-tag',
-                    title:'标签管理',
-                    name: "Tags",
-                    path:'tags'
+                    icon: "icon-tag",
+                    title: "留言管理",
+                    name: "message",
+                    path: "message",
                 },
-                {
-                    icon:'icon-tag',
-                    title:'留言管理',
-                    name: "Messages",
-                    path:'messages'
-                },
-                
-            ]
+            ],
         };
     },
-    computed:{
-         currentView: {
-            get(){
+    computed: {
+        currentView: {
+            get() {
                 return this.$store.state.currentView;
             },
-            set(newVal){
-                this.$store.commit('changeCurrentView', newVal);
-            }
+            set(newVal) {
+                this.$store.commit("changeCurrentView", newVal);
+            },
         },
     },
     methods: {
-        changeMenu(index){
-             const obj = {
-                title:this.elMenus[index].title,
-                name: this.elMenus[index].name,
-                path:this.elMenus[index].path
+        changeMenu(item) {
+            const obj = {
+                title: item.title,
+                name: item.name,
+                path:item.path,
+            };
+            
+            // 切换菜单
+            let path = this.$route.params.name;
+            if(item.fatherTitle){
+                obj.fatherTitle = item.fatherTitle;
+                // 判断是否为二级菜单
+                if (`${path}/${this.$route.params.subName}` !== item.path) {
+                    this.$router.replace(`/dashboard/${item.path}`);
+                }
             }
+            else{
+                 if (path !== item.path) {
+                    this.$router.replace(`/dashboard/${item.path}`);
+                }
+            }
+            this.$store.commit("changeCurrentView", obj.name);
             // 添加tab
-            this.$store.commit('addTab', obj);
-            // 切换显示的tab
-            this.$store.commit('changeCurrentView', obj.name);
-            if (this.$route.params.name !==obj.path) {
-                this.$router.replace(`/dashboard/${obj.path}`);
-            }
+            this.$store.commit("addTab", obj);
         },
         changeShow() {
             this.$store.state.isCollapse = !this.$store.state.isCollapse;
-            this.sidebarIcon = this.sidebarIcon === "el-icon-s-fold"
+            this.sidebarIcon =
+                this.sidebarIcon === "el-icon-s-fold"
                     ? "el-icon-s-unfold"
                     : "el-icon-s-fold";
-        },
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
         },
     },
 };

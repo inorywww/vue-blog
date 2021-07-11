@@ -55,7 +55,7 @@ export default {
     width: 60%;
     text-align: center;
     height: 100%;
-    box-shadow: 0 0 0 999px rgba(0,0,0,.5);
+    box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.5);
     /* z-index: 100; */
 }
 .el-menu {

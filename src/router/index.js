@@ -90,7 +90,6 @@ const routes = [{
         },
         component: Dashboard
     },
-    
     {
         path:'/dashboard/:name',
         meta:{
@@ -99,6 +98,30 @@ const routes = [{
         },
         component: Dashboard,
     },
+    {
+        path:'/dashboard/:name/:subName',
+        meta:{
+            title:'管理面板',
+            requireAuth:true,
+        },
+        component: Dashboard,
+    },
+    // {
+    //     path:'/dashboard/articles/:name',
+    //     meta:{
+    //         title:'管理面板',
+    //         requireAuth:true,
+    //     },
+    //     component: Dashboard,
+    // },
+    // {
+    //     path:'/dashboard/says/:name',
+    //     meta:{
+    //         title:'管理面板',
+    //         requireAuth:true,
+    //     },
+    //     component: Dashboard,
+    // },
     {
         path: '*',
         name:'/404',

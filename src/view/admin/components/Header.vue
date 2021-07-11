@@ -8,7 +8,11 @@
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/dashboard/home' }">首页
                     </el-breadcrumb-item>
-                    <el-breadcrumb-item>{{breadTitle || ''}}</el-breadcrumb-item>
+                    <el-breadcrumb-item 
+                        v-for="(item, index) in breadTitles" 
+                        :key="index"
+                        :to="{path:item.path}"
+                    >{{item.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
         </div>
@@ -38,6 +42,7 @@ export default {
     data() {
         return {
             sidebarIcon: "el-icon-s-fold",
+            
         };
     },
     mounted(){
@@ -47,20 +52,29 @@ export default {
         }
     },
     computed:{
-        breadTitle:{
+        breadTitles:{
             get(){
                 if(!this.$route.params.name){
-                    return '首页'
+                    return ['首页'];
                 }
                 else{
-                    const path = this.$route.params.name;
-                    const tab = this.$store.state.allTabs.find(item => {
-                        return item.path === path;
-                    });
-                    return tab.title;
+                    let name = this.$route.params.name;
+                    if(this.$route.params.subName){
+                        name += ('-'+this.$route.params.subName);
+                    }
+                    const item = this.$store.state.allTabs.find(item => {return item.name === name});
+                    let titleArr = [];
+                    if(this.$route.params.subName){
+                        //点击面包屑上一级自动跳转到第一个子菜单
+                        titleArr = [{title:item.fatherTitle,path:`/dashboard/${name.split('-')[0]}/all`},{title:item.title,path:null}]
+                    }
+                    else{
+                        titleArr = [{title:item.title,path:null}]
+                    }
+                    return titleArr;
                 }
             },
-        }
+        },
     },
     methods: {
         changeShow() {
