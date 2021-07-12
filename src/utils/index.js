@@ -72,7 +72,7 @@ export function alertInfo(message, type) {
     Message({
         showClose: true,
         message,
-        type: type,
+        type,
     });
 }
 //根据数组里面对象的某个属性排序

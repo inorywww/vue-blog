@@ -6,7 +6,7 @@
             </el-aside>
             <el-container>
                 <el-header>
-                    <Header />
+                    <DashHeader />
                 </el-header>
                 <el-main>
                     <Content />
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Header from "./components/Header";
+import DashHeader from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 export default {
@@ -27,7 +27,7 @@ export default {
     },
     mounted() {},
     components: {
-        Header,
+        DashHeader,
         Sidebar,
         Content,
     },
@@ -49,4 +49,5 @@ export default {
 .el-main {
     padding: 4px 0 !important;
 }
+
 </style>

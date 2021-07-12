@@ -30,7 +30,6 @@ const store = new Vuex.Store({
     },
     mutations: {
         delAllTab(state){
-            console.log('delAllTab');
             state.allTabs = [];
         },
         addTab(state,tab){

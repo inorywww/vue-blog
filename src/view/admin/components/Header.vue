@@ -26,7 +26,7 @@
                         <router-link to="/">前台首页</router-link>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                        <router-link to="https://github.com/inorywww/vue-blog"
+                        <router-link to="https: //github.com/inorywww/vue-blog"
                             >github</router-link
                         >
                     </el-dropdown-item>

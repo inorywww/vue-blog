@@ -48,4 +48,10 @@
     .el-collapse-item__content{
         padding: 0 !important;
     }
+    .upload-container > .el-form-item__content{
+        display: flex !important;
+    }
+    .upload-container > .el-form-item__content .upload-btn{
+        margin-left: 12px;
+    }
 </style>
