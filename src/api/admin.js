@@ -43,3 +43,36 @@ export function releaseArticle(data){
         data,
     })
 }
+
+export function addTag(data){
+    return request({
+        url:`/tag/add`,
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data,
+    })
+}
+
+export function editTag(data,tagID){
+    return request({
+        url:`/tag/edit/${tagID}`,
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data,
+    })
+}
+
+export function delTag(tagID){
+    return request({
+        url:`/tag/delete/${tagID}`,
+        method:'delete',
+        headers:{
+            Authorization:getToken()
+        },
+    })
+}
+

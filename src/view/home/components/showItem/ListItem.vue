@@ -17,7 +17,7 @@
                         </p>
                     </div>
                 </main>
-                <footer class="article-action">
+                <!-- <footer class="article-action">
                     <el-button type="info" class="see iconfont icon-see" plain>
                         <span>{{item.action.see}}</span>
                     </el-button>
@@ -27,7 +27,7 @@
                     <el-button type="info" class="comment iconfont icon-comment" plain>
                         <span>{{item.action.comment}}</span>
                     </el-button>
-                </footer>
+                </footer> -->
             </el-card>
         </div>
     </router-link>
