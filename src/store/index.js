@@ -26,7 +26,8 @@ const store = new Vuex.Store({
         isShowComment:false,
         isCollapse:false,
         allTabs:[],
-        currentView:'Home'
+        currentView:'Home',
+        isUpLoad:false,
     },
     mutations: {
         delAllTab(state){

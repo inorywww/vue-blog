@@ -34,14 +34,14 @@
                         <h1 style="text-align: center">确认要删除吗？该操作不可逆</h1>
                         <span slot="footer" class="dialog-footer">
                             <el-button @click="dialogDelVisible = false">取 消</el-button>
-                            <el-button type="danger" @click="deleteArticle(scope.$index)">确 定</el-button>
+                            <el-button type="danger" @click="deleteArticle">确 定</el-button>
                         </span>
                     </el-dialog>
                     <el-button
                     size="mini"
                     type="danger"
                     slot="reference"
-                    @click="dialogDelVisible=true"
+                    @click="isDel(scope.$index)"
                     >删除
                     </el-button>
                 </template>
@@ -112,7 +112,6 @@
                     >
                         <el-button type="primary" slot="reference">确 定</el-button>
                     </el-popconfirm>
-                    
                 </div>
             </el-dialog>
         </div>
@@ -146,9 +145,7 @@ export default {
                 this.searchContent === ""
                     ? this.allArticles
                     : this.allArticles.filter((data) => {
-                          return data.title
-                              .toLowerCase()
-                              .includes(this.searchContent.toLowerCase());
+                          return data.title.toLowerCase().includes(this.searchContent.toLowerCase());
                       });
             return items.slice(
                 (this.currentPageIndex - 1) * this.pageSize,
@@ -181,6 +178,7 @@ export default {
             dialogDelVisible:false,
             editForm: {
             },
+            delIndex:0,
             formRules:{
                 title: [
                     { required: true, message: '请输入标题', trigger: 'blur' },
@@ -220,9 +218,8 @@ export default {
         },
         isEdit(index){
             this.dialogFormVisible = true;
-            this.editForm = this.showTable[index];
+            this.editForm = JSON.parse(JSON.stringify(this.showTable[index]));
             this.editForm['allTags'] = this.allTags;
-           
         },
         editArticle() {
             this.$refs['editForm'].validate((valid) => {
@@ -254,8 +251,12 @@ export default {
                 }
             });
         },
-        deleteArticle(index) {
-            delArticle(this.showTable[index].articleID)
+        isDel(index){
+            this.dialogDelVisible=true;
+            this.delIndex = index;
+        },
+        deleteArticle() {
+            delArticle(this.showTable[this.delIndex].articleID)
                 .then(res => {
                     if(res.status === 200){
                         alertInfo('删除成功', 'success');
@@ -276,7 +277,7 @@ export default {
             );
         },
     },
-};
+}
 </script>
 
 <style scoped>

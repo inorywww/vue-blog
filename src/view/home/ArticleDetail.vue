@@ -149,7 +149,6 @@ export default {
                     type: "articleMessage",
                     info: this.markdownForm,
                 };
-
                 sendMessage(sendInfo)
                     .then((res) => {
                         if (res.status == 200) {

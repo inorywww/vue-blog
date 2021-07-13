@@ -19,17 +19,15 @@
         components: {ListItem},
         async mounted() {
             await getAllArticle().then((res) => {
-                res.data.forEach((item) => {
-                    item.tags.forEach((tag) => {
+                res.data.forEach(item => {
+                    item.tags.forEach(tag => {
                         if (tag === this.$route.query.tagName) {
                             this.tagArticles.push(item);
                         }
                     });
                 });
             });
-          
         },
-
         data() {
             return {
                 tagArticles: [],

@@ -32,7 +32,17 @@ export function delArticle(articleID){
         }
     })
 }
-
+export function uploadFile(data){
+    return request({
+        url:'/article/upload',
+        method:'post',
+        headers:{
+            Authorization:getToken(),
+            'Content-Type': 'multipart/form-data' 
+        },
+        data,
+    })
+}
 export function releaseArticle(data){
     return request({
         url:'/article/add',
@@ -76,3 +86,56 @@ export function delTag(tagID){
     })
 }
 
+export function addSay(data){
+    return request({
+        url:`/say/add`,
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data,
+    })
+}
+
+export function editSay(sayID,data){
+    return request({
+        url:`/say/edit/${sayID}`,
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data,
+    })
+}
+
+export function delSay(sayID){
+    return request({
+        url:`/say/delete/${sayID}`,
+        method:'delete',
+        headers:{
+            Authorization:getToken()
+        },
+    })
+}
+
+
+export function editMessage(id,data){
+    return request({
+        url:`/message/edit/${id}`,
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data,
+    })
+}
+
+export function delMessage(id){
+    return request({
+        url:`/message/delete/${id}`,
+        method:'delete',
+        headers:{
+            Authorization:getToken()
+        },
+    })
+}

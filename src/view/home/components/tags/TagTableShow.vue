@@ -14,15 +14,16 @@
         name: "tagTableShow",
         components: {TableItem},
         async mounted() {
-            getAllArticle().then((res) => {
-                if (res.status == 200) {
-                    this.tagArticles = res.data;    
-                }
-            }).catch((err) => {
-                console.log(err);
+             await getAllArticle().then((res) => {
+                res.data.forEach(item => {
+                    item.tags.forEach(tag => {
+                        if (tag === this.$route.query.tagName) {
+                            this.tagArticles.push(item);
+                        }
+                    });
+                });
             });
         },
-
         data() {
             return {
                 tagArticles: [],
