@@ -82,9 +82,6 @@ export default {
                     return this.filterTables.slice((this.currentPageIndex - 1) * this.pageSize,this.currentPageIndex * this.pageSize);
                 }
                 },
-            set(newVal){
-                console.log(newVal);            
-            }
         },
         totalPage: {
             get() {

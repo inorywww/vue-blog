@@ -1,18 +1,20 @@
 <template>
-  <div class="about-me">
-
+  <div class="about-container">
+      <div class="about-title">
+          <h1>关于我</h1>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-    name:'aboutMe',
-    mounted:{
-        
+    name:"about",
+    mounted(){
+
     },
     data(){
-        return{
-            authorInfo:{}
+        return {
+
         }
     }
 }

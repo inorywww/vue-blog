@@ -1,6 +1,6 @@
 <template>
     <div class="upload-image">
-        <el-upload action="/api/article/upload" list-type="picture-card">
+        <el-upload action="/api/article/upload" list-type="picture-card" :before-upload="beforeFileUpload">
             <i slot="default" class="el-icon-plus"></i>
             <div slot="file" slot-scope="{ file }">
                 <img
@@ -45,11 +45,7 @@ export default {
             disabled: false,
         };
     },
-    computed: {
-        listData() {
-            return this.$store.state.isUpLoad;
-        }
-    },
+   
     methods: {
         submit(){
             this.$refs.upload.submit();
@@ -57,6 +53,9 @@ export default {
         handlePictureCardPreview(file) {
             this.dialogImageUrl = file.url;
             this.dialogVisible = true;
+        },
+        beforeFileUpload(file){
+            console.log(file);
         },
     },
 };

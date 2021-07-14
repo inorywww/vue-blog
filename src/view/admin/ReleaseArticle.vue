@@ -22,24 +22,23 @@
                         class="upload-container"
                         prop="fileName"
                     >
-                    <el-upload
-                        class="upload-demo"
-                        drag
-                        action="/api/article/upload"
-                        :multiple="false"
-                        :before-upload="beforeFileUpload"
-                        :on-change="beforeFileUpload"
-                        :auto-upload="false"
-                        ref="upload"
-                    >
-                        <i class="el-icon-upload"></i>
-                        <div class="el-upload__text">
-                            将文件拖到此处，或<em>点击上传</em>
-                        </div>
-                        <div class="el-upload__tip" slot="tip">
-                            仅支持markdown文件
-                        </div>
-                    </el-upload>
+                        <el-upload
+                            class="upload-demo"
+                            drag
+                            action="/api/article/upload"
+                            :multiple="false"
+                            :on-change="beforeFileUpload"
+                            :auto-upload="false"
+                            ref="upload"
+                        >
+                            <i class="el-icon-upload"></i>
+                            <div class="el-upload__text">
+                                将文件拖到此处，或<em>点击上传</em>
+                            </div>
+                            <div class="el-upload__tip" slot="tip">
+                                仅支持markdown文件
+                            </div>
+                        </el-upload>
                     </el-form-item>
                     <el-form-item
                         label="封面"
@@ -47,7 +46,51 @@
                         class="upload-container"
                         prop="coverSrc"
                     >
-                        <upload-image/>
+                        <div class="upload-image">
+                            <el-upload
+                                action="/api/article/upload"
+                                list-type="picture-card"
+                                :before-upload="beforeFileUploadImg"
+                            >
+                                <i slot="default" class="el-icon-plus"></i>
+                                <div slot="file" slot-scope="{ file }">
+                                    <img
+                                        class="el-upload-list__item-thumbnail"
+                                        :src="file.url"
+                                        alt=""
+                                    />
+                                    <span class="el-upload-list__item-actions">
+                                        <span
+                                            class="el-upload-list__item-preview"
+                                            @click="
+                                                handlePictureCardPreview(file)
+                                            "
+                                        >
+                                            <i class="el-icon-zoom-in"></i>
+                                        </span>
+                                        <span
+                                            v-if="!disabled"
+                                            class="el-upload-list__item-delete"
+                                        >
+                                            <i class="el-icon-download"></i>
+                                        </span>
+                                        <span
+                                            v-if="!disabled"
+                                            class="el-upload-list__item-delete"
+                                        >
+                                            <i class="el-icon-delete"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisibleImg">
+                                <img
+                                    width="100%"
+                                    :src="dialogImageUrl"
+                                    alt=""
+                                />
+                            </el-dialog>
+                        </div>
                     </el-form-item>
                     <el-form-item
                         label="介绍"
@@ -82,7 +125,7 @@
             <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
                 <h1>确认要发布吗？</h1>
                 <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible=false">取 消</el-button>
+                    <el-button @click="dialogVisible = false">取 消</el-button>
                     <el-button type="primary" @click="release">确 定</el-button>
                 </span>
             </el-dialog>
@@ -110,11 +153,9 @@
 import { getAllTags } from "@/api/index";
 import { releaseArticle } from "@/api/admin";
 import { alertInfo } from "@/utils/index";
-import UploadImage from './components/UploadImage';
 export default {
     name: "releaseArticle",
-    components:{
-        UploadImage
+    components: {
     },
     mounted() {
         getAllTags()
@@ -142,37 +183,49 @@ export default {
             releaseForm: {},
             allTags: [],
             dialogVisible: false,
+            dialogVisibleImg: false,
             mdContent: "",
+            dialogImageUrl: "",
+            disabled: false,
         };
     },
     methods: {
-        isRelease(){
-            this.dialogVisible = true;
-            this.$store.state.isUpLoad = true
-            // console.log(this.releaseForm);
-            this.$refs.upload.submit();
-            // uploadFile(this.file).then(res =>{
-            //     console.log(res.data);
-            // }).catch(err => console.log(err))
+        beforeFileUpload(file) {
+            console.log(file);
+            if(file.name.split(".")[1] !== "md"){
+                alertInfo("只能上传md文档!","error");
+                return false;
+            }
+            else{
+                this.releaseForm["fileName"] = file.name;
+            }
         },
-        beforeFileUpload(file){
-            this.file = file;
-            // console.log('file:',file);
-            this.releaseForm['fileName'] = file.name;
+        beforeFileUploadImg(file) {
+            const isJPG = file.type === "image/jpeg" || "image/png";
+            if (!isJPG) {
+                alertInfo("图片只能是jpg/png格式!","error");
+                return isJPG;
+            }
+            else{
+                this.releaseForm["coverSrc"] = file.name;
+            }
         },
         change(value, render) {
             this.html = render;
         },
+        isRelease() {
+            this.dialogVisible = true;
+        },
         release() {
             this.dialogVisible = false;
-            console.log(this.releaseForm);
             this.$refs["releaseForm"].validate((valid) => {
-                if (valid) {
+                if (valid && this.releaseForm["fileName"]) {
                     releaseArticle(this.releaseForm)
                         .then((res) => {
                             if (res.status === 200) {
                                 alertInfo("发布成功~", "success");
                                 this.releaseForm = {};
+                                this.$refs.upload.submit();
                             } else {
                                 alertInfo("发布失败！请稍后重试", "error");
                             }

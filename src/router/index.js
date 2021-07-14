@@ -2,7 +2,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router";
 import store from '../store';
-import { getToken } from "@/utils/auth";
+import { getToken ,removeToken} from "@/utils/auth";
 import { alertInfo } from "@/utils/index";
 //组件懒加载
 const Index = () => import('@/view/home/Index');
@@ -106,22 +106,6 @@ const routes = [{
         },
         component: Dashboard,
     },
-    // {
-    //     path:'/dashboard/articles/:name',
-    //     meta:{
-    //         title:'管理面板',
-    //         requireAuth:true,
-    //     },
-    //     component: Dashboard,
-    // },
-    // {
-    //     path:'/dashboard/says/:name',
-    //     meta:{
-    //         title:'管理面板',
-    //         requireAuth:true,
-    //     },
-    //     component: Dashboard,
-    // },
     {
         path: '*',
         name:'/404',
@@ -151,7 +135,6 @@ const router = new VueRouter({
 // 路由发生变化修改页面title
 router.beforeEach( (to, from, next) => {
     // 判断当前页面是否需要授权
-    // console.log(to);
     if(to.meta.requireAuth){
         if(!getToken()){
             alertInfo('尚未授权！','error');
@@ -160,7 +143,8 @@ router.beforeEach( (to, from, next) => {
         }
     }
     else{
-        //清空所有tab
+        //清空所有tab 移除token
+        removeToken()
         if(store.state.allTabs.length !== 0){
             store.commit('delAllTab');
         }
