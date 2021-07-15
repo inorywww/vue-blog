@@ -54,4 +54,5 @@
     .upload-container > .el-form-item__content .upload-btn{
         margin-left: 12px;
     }
+    
 </style>

@@ -90,11 +90,6 @@ export default {
                     title: "碎碎念",
                 },
                 {
-                    icon: "icon-40one",
-                    page: "/about",
-                    title: "关于",
-                },
-                {
                     icon: "icon-aichegujiabeifen7",
                     page: "/archive",
                     title: "归档",

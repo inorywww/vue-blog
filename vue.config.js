@@ -1,15 +1,19 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     lintOnSave: false,
     runtimeCompiler: true,
+    outputDir:'dist',
+    assetsDir:'static',
     devServer: {
         open: true,
         host: "localhost", 
         port: 7070,
         https: false, //协议
         hotOnly:false,
+        // proxy: 'http://49.234.17.206/api/'
         proxy: {  // 开发环境代理配置
             '/api': {  // 当请求是api开头的请求，都走代理
-                // 目标服务器地址
+                // 目标服务器地址 target: 'http://49.234.17.206:5000/api/',
                 target: 'http://localhost:5000/api/',
                 ws:true,
                 changeOrigin: true,   

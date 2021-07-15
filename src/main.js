@@ -15,6 +15,16 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// import VueHighlightJS from 'highlight.js';
+// import "highlight.js/styles/vs2015.css";
+// Vue.use(VueHighlightJS);
+// Vue.directive('highlight', (el) => {
+//   const blocks = el.querySelectorAll('pre')
+//   blocks.forEach((block) => {
+//     VueHighlightJS.highlightBlock(block)
+//   })
+// });
+
 Vue.config.productionTip = false;
 Vue.use(require('vue-moment'));
 

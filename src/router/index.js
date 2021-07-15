@@ -60,13 +60,6 @@ const routes = [{
                 component: () => import('@/view/home/Archive')
             },
             {
-                path:'/about',
-                meta:{
-                    title:'关于我'
-                },
-                component:() => import('@/view/home/AboutMe')
-            },
-            {
                 path:'/message',
                 meta: {
                     title:'留言'
@@ -117,7 +110,7 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes,
     // 跳转路由的时候返回到最顶端
     scrollBehavior(to, from, saveTop) { 

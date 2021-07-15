@@ -101,7 +101,9 @@
         opacity: .5 !important;
         color: var(--themeBodyColor) !important;
     }
-
+    .hljs{
+        color: var(--themeFontColor) !important;
+    }
     .hljs-keyword, .hljs-selector-tag, .hljs-subst, .hljs-tag, .hljs-name, .hljs-attribute{
         color: #d7acbc !important;
     }
