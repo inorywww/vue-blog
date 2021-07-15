@@ -110,7 +110,7 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     routes,
     // 跳转路由的时候返回到最顶端
     scrollBehavior(to, from, saveTop) { 

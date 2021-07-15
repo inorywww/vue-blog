@@ -28,6 +28,8 @@ const store = new Vuex.Store({
         allTabs:[],
         currentView:'Home',
         isUpLoad:false,
+        editDialogVisible:false,
+        SayDialogVisible:false,
     },
     mutations: {
         delAllTab(state){

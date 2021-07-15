@@ -54,50 +54,7 @@
             :hide-on-single-page="true"
         >
         </el-pagination>
-        <div class="editDialog">
-            <el-dialog title="编辑信息" :visible.sync="dialogFormVisible">
-                <el-form :model="editForm" :rules="formRules" ref="editForm">
-                    <div class="form-row">
-                        <el-form-item label="ID" label-width="120px">
-                            <el-input v-model="editForm.sayID" autocomplete="off" :disabled="true"></el-input>
-                        </el-form-item>
-                        <el-form-item label="时间" label-width="120px">
-                            <el-input v-model="editForm.time" autocomplete="off" :disabled="true"></el-input>
-                        </el-form-item>
-                    </div>
-                    <div class="form-row">
-                         <el-form-item label="发布人" label-width="120px">
-                            <el-input v-model="editForm.userName" autocomplete="off" :disabled="true"></el-input>
-                        </el-form-item>
-                        <el-form-item label="身份" label-width="120px">
-                            <el-input v-model="editForm.userIdentity" autocomplete="off" :disabled="true"></el-input>
-                        </el-form-item>
-                    </div>
-                     <div class="form-row">
-                        <el-form-item label="内容" label-width="120px" prop="content">
-                            <el-input v-model="editForm.content" autocomplete="off"></el-input>
-                        </el-form-item>
-                        <el-form-item label="封面链接" label-width="120px" prop="coverSrc" class="upload-container">
-                            <el-input v-model="editForm.coverSrc" autocomplete="off"></el-input>
-                            <el-button type="primary">上传</el-button>
-                        </el-form-item>
-                    </div>
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible=false">取 消</el-button>
-                    <el-popconfirm
-                        confirm-button-text="好的"
-                        cancel-button-text="不用了"
-                        icon="el-icon-info"
-                        icon-color="red"
-                        title="确定修改吗？"
-                        @confirm="editSay"
-                    >
-                        <el-button type="primary" slot="reference">确 定</el-button>
-                    </el-popconfirm>
-                </div>
-            </el-dialog>
-        </div>
+        <say-dialog :editForm="editForm"/>
     </div>
 </template>
 
@@ -106,6 +63,7 @@ import { getAllSays } from "@/api/index";
 import { delSay, editSay } from "@/api/admin";
 import { compare, alertInfo } from "@/utils/index";
 import moment from "moment";
+import SayDialog from './components/SayDialog.vue';
 export default {
     name: "dashboardSays",
     mounted() {
@@ -157,7 +115,7 @@ export default {
             },
         };
     },
-    components: {},
+    components: {SayDialog},
     methods: {
         init(){
             getAllSays().then((res) => {
@@ -174,6 +132,7 @@ export default {
         },
         isEdit(index){
             this.dialogFormVisible = true;
+            this.$store.state.SayDialogVisible = true;
             this.editForm = JSON.parse(JSON.stringify(this.showTable[index]));
         },
         editSay() {

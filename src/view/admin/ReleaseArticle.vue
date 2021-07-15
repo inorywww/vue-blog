@@ -51,6 +51,8 @@
                                 action="/api/article/upload"
                                 list-type="picture-card"
                                 :before-upload="beforeFileUploadImg"
+                                ref="uploadImg"
+                                :auto-upload="false"
                             >
                                 <i slot="default" class="el-icon-plus"></i>
                                 <div slot="file" slot-scope="{ file }">
@@ -191,7 +193,6 @@ export default {
     },
     methods: {
         beforeFileUpload(file) {
-            console.log(file);
             if(file.name.split(".")[1] !== "md"){
                 alertInfo("只能上传md文档!","error");
                 return false;
@@ -226,6 +227,7 @@ export default {
                                 alertInfo("发布成功~", "success");
                                 this.releaseForm = {};
                                 this.$refs.upload.submit();
+                                this.$refs.uploadImg.submit();
                             } else {
                                 alertInfo("发布失败！请稍后重试", "error");
                             }
@@ -256,9 +258,6 @@ export default {
 .releaseArticle .view-md {
     flex: 3;
     margin: 0 20px;
-}
-.releaseArticle .view-md .md-container {
-    /* margin-top:200px; */
 }
 .release {
     text-align: center;
