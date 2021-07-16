@@ -74,7 +74,6 @@
                     this.tagNum = this.tags[this.current].totalNum;
                 }
             });
-            console.log(this.tags);
         },
         watch: { //通过watch来监听路由变化  从而刷新子组件
             "$route": function (){  

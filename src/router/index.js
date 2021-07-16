@@ -7,9 +7,8 @@ import { alertInfo } from "@/utils/index";
 //组件懒加载
 const Index = () => import('@/view/home/Index');
 const notFoundError = () => import('@/view/404/Index');
-const Login = () => import('@/view/login/Index')
-// const DashBoardHome = () => import('@/view/admin/Home')
-const Dashboard = () => import('@/view/admin/Dashboard')
+const Login = () => import('@/view/login/Index');
+const Dashboard = () => import('@/view/admin/Dashboard');
 Vue.use(VueRouter);
 
 const routes = [{
@@ -26,6 +25,7 @@ const routes = [{
             },
             {
                 path: 'article',
+                name:'article',
                 meta: {
                     title: '文章列表'
                 },
@@ -33,6 +33,7 @@ const routes = [{
             },
             {
                 path: '/article/:id',
+                name:'articleDetail',
                 meta: {
                     title: 'articleDetail'
                 },
@@ -40,6 +41,7 @@ const routes = [{
             },
             {
                 path: '/tags',
+                name: 'tags',
                 meta: {
                     title: '标签列表'
                 },
@@ -47,6 +49,7 @@ const routes = [{
             },
             {
                 path:'/says',
+                name:'says',
                 meta:{
                     title:'碎碎念',
                 },
@@ -54,6 +57,7 @@ const routes = [{
             },
             {
                 path: '/archive',
+                name: 'archive',
                 meta: {
                     title: '归档'
                 },
@@ -61,6 +65,7 @@ const routes = [{
             },
             {
                 path:'/message',
+                name:'message',
                 meta: {
                     title:'留言'
                 },
@@ -70,6 +75,7 @@ const routes = [{
     },
     {
         path:'/login',
+        name:'login',
         meta:{
             title:'管理员登录'
         },
@@ -77,14 +83,16 @@ const routes = [{
     },
     {
         path:'/dashboard',
+        name:'dashboard',
         meta:{
-            title:'管理员登录',
+            title:'管理面板',
             requireAuth:true,
         },
         component: Dashboard
     },
     {
         path:'/dashboard/:name',
+        name:'dashboard1',
         meta:{
             title:'管理面板',
             requireAuth:true,
@@ -93,6 +101,7 @@ const routes = [{
     },
     {
         path:'/dashboard/:name/:subName',
+        name:'dashboard2',
         meta:{
             title:'管理面板',
             requireAuth:true,
@@ -100,13 +109,18 @@ const routes = [{
         component: Dashboard,
     },
     {
-        path: '*',
-        name:'/404',
-        meta: {
-            title: '这里什么都没有'
-        },
-        component: notFoundError
+        path: '/404',
+        name: '404 Not Found',
+        component: notFoundError,
+        meta: { title: '你走丢了' },
+        hidden: true
     },
+    {
+        path: '*',
+        redirect: '/404',
+        hidden: true
+    }
+   
 ];
 
 const router = new VueRouter({

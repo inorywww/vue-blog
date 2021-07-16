@@ -54,7 +54,7 @@
                         <div class="upload-box">
                             <el-upload
                                 class="upload-demo"
-                                action="/api/article/upload"
+                                action="/api/upload"
                                 :multiple="false"
                                 :on-change="beforeUploadMd"
                                 :auto-upload="false"
@@ -84,7 +84,7 @@
                         <div class="upload-box">
                             <el-upload
                                 class="upload-demo"
-                                action="/api/article/upload"
+                                action="/api/upload"
                                 :multiple="false"
                                 :on-change="beforeUploadCover"
                                 :auto-upload="false"
@@ -104,6 +104,9 @@
                             v-model="editForm.tags"
                             multiple
                             placeholder="请选择"
+                            filterable
+                            allow-create
+                            default-first-option
                         >
                             <el-option
                                 v-for="(item, index) in editForm.allTags"
@@ -173,7 +176,7 @@ export default {
         beforeUploadMd(file){
             const isMD = file.name.split(".").pop() === "md";
             if (!isMD) {
-                alertInfo("图片只能是jpg/png格式!", "error");
+                alertInfo("文件只能md格式!", "error");
                 return isMD;
             } else {
                 // 读取文件内容

@@ -8,7 +8,13 @@ export function login(data){
         data
     }).then((res) =>{
         setToken(res.data.token);
-        // const decoded = jwt_decode(res.data.token);
+    })
+}
+
+export function getHome(){
+    return request({
+        url:'/home',
+        method:'get',
     })
 }
 
@@ -137,5 +143,26 @@ export function delMessage(id){
         headers:{
             Authorization:getToken()
         },
+    })
+}
+
+export function getCourse(){
+    return request({
+        url:'/course',
+        method:'get',
+        headers:{
+            Authorization:getToken()
+        },
+    })
+}
+
+export function addCourse(data){
+    return request({
+        url:'/course/add',
+        method:'post',
+        headers:{
+            Authorization:getToken()
+        },
+        data
     })
 }

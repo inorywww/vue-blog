@@ -128,7 +128,7 @@ export default {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                alertInfo(err);
             });
     },
     data() {
@@ -148,7 +148,7 @@ export default {
                 email: "",
                 content: "",
             },
-            mdMsg:'# 函数\r\n\r\n## 函数形参的默认值\r\n\r\n### es6的默认参数值\r\n\r\n```js\r\nfunction fun1(url,timeout=2000){\r\n    //...  该函数url为必需参数，timeout当没有参数传入或者传入为undefined时，默认就为2000\r\n}\r\n```\r\n\r\n### 默认参数表达式\r\n\r\n```js\r\nfunction getVal(){\r\n    return 5;\r\n}\r\nfunction fun1(first,second = getVal()){\r\n    //... 该函数first为必需参数，second默认值为getVal()返回的值，5，不传入第二个参数才会调用getVal()\r\n}\r\n```\r\n\r\n另外也可以\r\n\r\n```js\r\nfunction add(first, second = first){\r\n    //... 当第二个参数没有传值时，默认值为第一个参数的值\r\n}\r\n```\r\n\r\n## 处理无命名参数\r\n\r\n### 不定参数\r\n\r\n```js\r\n//形参前面添加...就表示不定参数，该参数为一个数组，包含所有传入的参数，通过下标可以访问所有参数\r\nfunction sum(val, ...vals){\r\n   let vs = [];\r\n   for(let i=0;i<vals.length;i++){\r\n       vs.push(vals);\r\n   }\r\n}\r\n//其中不定参数只能放在最后,下面这种就会报错。\r\nfunction sum1(...vals,val){\r\n    \r\n}\r\n```\r\n\r\n## 展开运算符\r\n\r\n展开运算符和不定参数相似，例如\r\n\r\n```js\r\n//es6之前的版本要使用Math.max()查找数组最大值。\r\nconst vals = [3,1,2];\r\nconsole.log(Math.max.apply(Math,vals)) // 3\r\n//es6之后可以直接使用展开运算符，会将数组分割为各自独立的参数\r\nconsole.log(Math.max(...vals)) // 3 等价于 Math.max(3,1,2)\r\n\r\n//另外可以将展开运算符和正常参数一起使用，例如限定返回值最小为0\r\nconst vals1 = [-10,-20,-30];\r\nconsole.log(Math.max(...vals1, 0)) // 0\r\n```\r\n\r\n## name属性\r\n\r\nes6中所有函数都增加了name属性，例如\r\n\r\n```js\r\nfunction fun1(){\r\n    //...\r\n}\r\nconst fun2 = function(){\r\n    //...\r\n}\r\nconst fun3 = function fun4(){\r\n    //...\r\n}\r\nconsole.log(fun1.name)//fun1\r\nconsole.log(fun2.name)//fun2\r\nconsole.log(fun3.name)//fun4 由于函数表达式有一个名字fun4 权重比fun3高，所以为fun4\r\n```\r\n\r\n## 箭头函数\r\n\r\n箭头函数有以下特性：\r\n\r\n- 没有this super arguments new.target绑定，这些值由外层最近一个非箭头函数提供\r\n- 不能用new关键字调用，因为箭头函数没有construct方法，不能用new构造\r\n- 没有原型，因为不能用new，所有不存在prototype这个属性\r\n- 不可以改变this的指向，\r\n- 不支持arguments对象\r\n- 不支持重复的命名参数\r\n\r\n## 尾调用优化\r\n\r\n指的是函数作为另一个函数的最后一条语句被调用，例如\r\n\r\n```js\r\nfunction fun1(){\r\n    return fun2(); //尾调用优化\r\n}\r\nfunction fun1(){\r\n    fun2() //无法优化 或者\r\n    return 1+fun2()//无法优化\r\n}\r\n```\r\n\r\n'
+            mdMsg:''
         };
     },
     methods: {

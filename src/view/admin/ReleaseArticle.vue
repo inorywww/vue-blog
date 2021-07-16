@@ -25,7 +25,7 @@
                         <el-upload
                             class="upload-demo"
                             drag
-                            action="/api/article/upload"
+                            action="/api/upload"
                             :multiple="false"
                             :on-change="beforeFileUpload"
                             :auto-upload="false"
@@ -48,7 +48,7 @@
                     >
                         <div class="upload-image">
                             <el-upload
-                                action="/api/article/upload"
+                                action="/api/upload"
                                 list-type="picture-card"
                                 :on-change="beforeFileUploadImg"
                                 :on-success="clearFile"
@@ -110,6 +110,9 @@
                             v-model="releaseForm.tags"
                             multiple
                             placeholder="请选择"
+                            filterable
+                            allow-create
+                            default-first-option
                         >
                             <el-option
                                 v-for="(item, index) in allTags"

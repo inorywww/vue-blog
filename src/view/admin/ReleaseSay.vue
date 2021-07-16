@@ -26,7 +26,7 @@
                         <el-upload
                             class="upload-demo"
                             drag
-                            action="/api/say/upload"
+                            action="/api/upload"
                             :multiple="false"
                             :on-change="beforeFileUpload"
                             :auto-upload="false"
