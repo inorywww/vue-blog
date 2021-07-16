@@ -176,15 +176,22 @@ export default {
                 alertInfo("图片只能是jpg/png格式!", "error");
                 return isMD;
             } else {
+                // 读取文件内容
+                const reader = new FileReader(); 
+                reader.onload = (evt) => {
+                    this.editForm["content"] = evt.target.result;
+                };
+                reader.readAsText(file.raw);
                 this.editForm["fileName"] = file.name;
             }
         },
         beforeUploadCover(file) {
-            const isJPG = file.name.split(".").pop() === "jpg" || file.name.split(".").pop() === "png";
+           const isJPG = file.raw.type === "image/jpeg" || file.raw.type === "image/png";
             if (!isJPG) {
-                alertInfo("图片只能是jpg/png格式!", "error");
+                alertInfo("图片只能是jpg/png格式!","error");
                 return isJPG;
-            } else {
+            }
+            else {
                 this.editForm["coverSrc"] = file.name;
             }
         },

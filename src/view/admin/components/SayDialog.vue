@@ -62,7 +62,6 @@
                             <el-upload
                                 class="upload-demo"
                                 action="/api/say/upload"
-                                :multiple="false"
                                 :on-change="beforeUploadCover"
                                 :auto-upload="false"
                                 ref="uploadImg"
@@ -125,9 +124,7 @@ export default {
     },
     methods: {
         beforeUploadCover(file) {
-            const isJPG =
-                file.name.split(".").pop() === "jpg" ||
-                file.name.split(".").pop() === "png";
+            const isJPG = file.raw.type === "image/jpeg" || file.raw.type === "image/png";
             if (!isJPG) {
                 alertInfo("图片只能是jpg/png格式!", "error");
                 return isJPG;

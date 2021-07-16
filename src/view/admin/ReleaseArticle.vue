@@ -50,7 +50,8 @@
                             <el-upload
                                 action="/api/article/upload"
                                 list-type="picture-card"
-                                :before-upload="beforeFileUploadImg"
+                                :on-change="beforeFileUploadImg"
+                                :on-success="clearFile"
                                 ref="uploadImg"
                                 :auto-upload="false"
                             >
@@ -138,7 +139,7 @@
             </div>
             <div class="md-container">
                 <mavon-editor
-                    v-model="mdContent"
+                    v-model="releaseForm.content"
                     ref="md"
                     @change="change"
                     placeholder="说点什么吧~"
@@ -186,7 +187,6 @@ export default {
             allTags: [],
             dialogVisible: false,
             dialogVisibleImg: false,
-            mdContent: "",
             dialogImageUrl: "",
             disabled: false,
         };
@@ -198,11 +198,17 @@ export default {
                 return false;
             }
             else{
+                // 读取文件内容
+                const reader = new FileReader(); 
+                reader.onload = (evt) => {
+                    this.releaseForm["content"] = evt.target.result;
+                };
+                reader.readAsText(file.raw);
                 this.releaseForm["fileName"] = file.name;
             }
         },
         beforeFileUploadImg(file) {
-            const isJPG = file.type === "image/jpeg" || "image/png";
+            const isJPG = file.raw.type === "image/jpeg" || file.raw.type === "image/png";
             if (!isJPG) {
                 alertInfo("图片只能是jpg/png格式!","error");
                 return isJPG;
@@ -224,10 +230,11 @@ export default {
                     releaseArticle(this.releaseForm)
                         .then((res) => {
                             if (res.status === 200) {
-                                alertInfo("发布成功~", "success");
-                                this.releaseForm = {};
                                 this.$refs.upload.submit();
                                 this.$refs.uploadImg.submit();
+                                alertInfo("发布成功~", "success");
+                                this.releaseForm = {};
+                                this.releaseForm.content = "";
                             } else {
                                 alertInfo("发布失败！请稍后重试", "error");
                             }
@@ -239,6 +246,10 @@ export default {
                 }
             });
         },
+        clearFile(){
+            this.$refs.upload.clearFiles();
+            this.$refs.uploadImg.clearFiles();
+        }
     },
 };
 </script>

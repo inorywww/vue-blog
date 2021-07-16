@@ -28,7 +28,6 @@
                             drag
                             action="/api/say/upload"
                             :multiple="false"
-                            :before-upload="beforeFileUpload"
                             :on-change="beforeFileUpload"
                             :auto-upload="false"
                             ref="upload"
@@ -100,7 +99,7 @@ export default {
             });
         },
         beforeFileUpload(file){
-            const isJPG = file.type === "image/jpeg" || "image/png";
+            const isJPG = file.raw.type === "image/jpeg" || file.raw.type === "image/png";
             if (!isJPG) {
                 alertInfo("图片只能是jpg/png格式!","error");
                 return isJPG;
