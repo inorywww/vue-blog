@@ -1,25 +1,26 @@
 module.exports = {
-    lintOnSave: false,
-    runtimeCompiler: true,
     outputDir:'dist',
     assetsDir:'static',
+    
+    lintOnSave: false,
+    runtimeCompiler: true,
     devServer: {
         open: true,
         host: "localhost", 
         port: 7070,
         https: false, //协议
         hotOnly:false,
-        proxy: {  
-            '/api': {  
-                // 'http://49.234.17.206:5000/api/',http://localhost:5000/api/
-                target: 'http://localhost:5000/api/',
-                ws:true,
-                changeOrigin: true,   
-                pathRewrite: {
-                    '^/api': '/',
-                }
-            }
-        },
+        // proxy: {  
+        //     '/api': {  
+        //         // 'http://49.234.17.206:5000/api/',http://localhost:5000/api/
+        //         target: 'http://49.234.17.206:5000/api/',
+        //         ws:true,
+        //         changeOrigin: true,   
+        //         pathRewrite: {
+        //             '^/api': '/',
+        //         }
+        //     }
+        // },
     },
     chainWebpack: config => {
         config.module.rule('md')
