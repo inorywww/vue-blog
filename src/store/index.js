@@ -47,7 +47,7 @@ const store = new Vuex.Store({
             state.allTabs = state.allTabs.filter(item => {
                 return item.name !== name
             })
-        },
+        }, 
         changeCurrentView(state,cv){
             state.currentView = cv;
         },

@@ -24,8 +24,7 @@ function endLoading(){
 
 // 请求拦截
 service.interceptors.request.use(config => {
-    // 请求前做点什么？
-    // 加载动画
+    // 请求前加载动画
     startLoading();
     if(getToken()){
         //判断当前token是否存在，如果存在就设置请求头header

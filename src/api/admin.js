@@ -1,6 +1,5 @@
 import request from "./request";
 import { setToken, getToken } from "@/utils/auth";
-// import jwt_decode from 'jwt-decode';
 export function login(data){
     return request({
         url: '/admin/login',

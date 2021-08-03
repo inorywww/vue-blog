@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import hljs from 'highlight.js';
+import hljs from 'highlight.js'; 
 import "highlight.js/styles/vs2015.css";
 
 import VueMarkdown from 'vue-markdown';
@@ -108,7 +108,6 @@ export default {
                 if (res.status == 200) {
                     this.articleItem = res.data;
                     this.mdMsg = this.articleItem.content;
-                    // highlightCode();
                     //设置标题
                     document.title = this.articleItem.title; 
 
