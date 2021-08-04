@@ -22,12 +22,11 @@ export default {
         getAllArticle().then((res) => {
             if (res.status == 200) {
                 this.articleItems = res.data.slice(0,6);
-                // this.$store.state.allArticles = res.data;
+                this.articleItems.reverse();
             }
         }).catch(err => {
             console.log(err);
         });
-        
     },
     components: {
         ArticleItem,

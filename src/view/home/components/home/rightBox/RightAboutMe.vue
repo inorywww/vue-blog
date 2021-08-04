@@ -13,21 +13,21 @@
                         <h3>inroyww</h3>
                     </div>
                 </div>
-                <div class="info-count">
+                <div class="info-count" v-if="dataFlag">
                     <div class="article-num">
-                        <router-link to="/article">{{infoCounts.article}}
+                        <router-link to="/article">{{infoCounts.articleInfo.num}}
                             <span>article</span>
                         </router-link>
                     </div>
                     <el-divider direction="vertical"></el-divider>
                     <div class="category-num">
-                        <router-link to="/category">{{infoCounts.category}}
-                            <span>category</span>
+                        <router-link to="/says">{{infoCounts.sayInfo.num}}
+                            <span>say</span>
                         </router-link>
                     </div>
                     <el-divider direction="vertical"></el-divider>
                     <div class="tag-num">
-                        <router-link to="/tags">{{infoCounts.tags}}
+                        <router-link to="/tags">{{infoCounts.tagInfo.num}}
                             <span>tag</span>
                         </router-link>
                     </div>
@@ -47,16 +47,21 @@
 </template>
 
 <script>
+    import { getHome } from "@/api/admin";
     export default {
         name: "AboutMe",
-        mounted() {
+        created() {
+            getHome().then(res => {
+                if(res.status === 200){
+                    this.infoCounts = res.data;
+                    this.dataFlag = true;
+                }
+            })
         },
         data() {
             return {
                 infoCounts: {
-                    article: 150,
-                    category: 12,
-                    tags: 20,
+                    
                 },
                 links: [
                     {
@@ -79,7 +84,8 @@
                         icon: 'icon-qq',
                         src: '',
                     },
-                ]
+                ],
+                dataFlag:false,
             }
         },
         methods: {},
