@@ -98,11 +98,9 @@
 <script>
 import moment from 'moment';
 import { getHome, getCourse, addCourse } from "@/api/admin";
+
 export default {
     name:'dashboardHome',
-    components:{
-        
-    },
     async created(){
         await getHome().then(res => {
             if(res.status === 200){

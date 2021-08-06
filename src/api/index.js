@@ -1,13 +1,20 @@
 import request from "./request";
 
-export async function getAllArticle() {
+export function getAllArticle() {
     return request({
         url: 'article',
         method: 'get',
     })
 }
 
-export async function getOneArticle(articleID) {
+export function getRecentArticle() {
+    return request({
+        url: 'article/recent',
+        method: 'get',
+    })
+}
+
+export function getOneArticle(articleID) {
     return request({
         url: `article/${articleID}`,
         method: 'get',

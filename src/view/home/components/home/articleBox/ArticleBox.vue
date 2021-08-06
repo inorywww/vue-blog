@@ -15,17 +15,20 @@
 
 <script>
 import ArticleItem from "@/view/home/components/home/articleBox/ArticleItem";
-import { getAllArticle } from "@/api/index";
+import { getRecentArticle } from "@/api/index";
+import { alertInfo } from "@/utils/index";
+
 export default {
     name: "ArticleBox",
     mounted() {
-        getAllArticle().then((res) => {
+        getRecentArticle().then((res) => {
             if (res.status == 200) {
-                this.articleItems = res.data.slice(0,6);
-                this.articleItems.reverse();
+                this.articleItems = res.data;
+            }else{
+                alertInfo('网络错误！','error');
             }
         }).catch(err => {
-            console.log(err);
+            alertInfo(err,'error');
         });
     },
     components: {

@@ -63,8 +63,8 @@
 
     .article-item .article-item-cover > img {
         transition: all .5s;
-        max-height: 100%;
-        max-width: 100%;
+        height: 500px;
+        width: 100%;
     }
 
     .article-item .article-item-cover > img:hover {
