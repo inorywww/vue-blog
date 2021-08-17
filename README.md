@@ -1,5 +1,5 @@
 # myblog
-在线地址：[myBlog](http://49.234.17.206/home)
+在线地址：[myBlog](https://inoryww.com/)
 
 ## Project setup
 ```
